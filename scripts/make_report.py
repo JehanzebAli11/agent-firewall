@@ -98,10 +98,40 @@ def breakdown_fig(M, key, held_exp, fname, model="tfidf_lr"):
     ax.invert_yaxis()
     ax.set_xlabel("injected actions stopped (block or ask), %")
     ax.set_xlim(0, 100)
-    ax.set_title(f"Catch rate by {key} ({model}); held-out rows in orange are unseen in training")
-    ax.legend(fontsize=8, loc="lower left")
+    ax.set_title(f"Catch rate by {key} ({model})", pad=34)
+    ax.legend(fontsize=8, loc="lower center", bbox_to_anchor=(0.5, 1.0), ncol=3)
     fig.tight_layout()
     fig.savefig(os.path.join(FIG, fname), dpi=150)
+    plt.close(fig)
+
+
+def false_block_fig(M, model="tfidf_lr"):
+    rows = []
+    for exp in EXPS:
+        for view in ("full", "blind"):
+            m = get(M, exp, model, view)
+            if m:
+                rows.append((f"{exp}\n{view}", m["overall"]["false_block"], m["overall"]["false_ask"]))
+    if not rows:
+        return
+    fig, ax = plt.subplots(figsize=(max(6, 1.1 * len(rows)), 4))
+    x = list(range(len(rows)))
+    w = 0.38
+    ax.bar([i - w / 2 for i in x], [100 * r[1] for r in rows], w, color=S2, label="legit actions blocked")
+    ax.bar([i + w / 2 for i in x], [100 * r[2] for r in rows], w, color=S1, label="legit actions sent to the user (ask)")
+    ax.axhline(1.0, color=INK2, lw=1, ls="--")
+    ax.set_ylim(0, 150)
+    ax.text(len(rows) - 0.5, 1.6, "1% false-block budget", ha="right", fontsize=8, color=INK2)
+    for i, r in enumerate(rows):
+        ax.text(i - w / 2, 100 * r[1] * 1.1 + 0.08, f"{100 * r[1]:.1f}", ha="center", va="bottom", fontsize=8)
+    ax.set_yscale("symlog", linthresh=2)
+    ax.set_xticks(x)
+    ax.set_xticklabels([r[0] for r in rows], fontsize=8)
+    ax.set_ylabel("% of legitimate test actions (symlog)")
+    ax.set_title(f"False alarms vs the budget ({model}): thresholds hold on held-out styles/languages/tricks, not on unseen tasks")
+    ax.legend(loc="upper left")
+    fig.tight_layout()
+    fig.savefig(os.path.join(FIG, "false_blocks_agent.png"), dpi=150)
     plt.close(fig)
 
 
@@ -145,6 +175,7 @@ def main():
         M = json.load(open("results/metrics.json"))
         reliability_fig(M)
         asr_fig(M)
+        false_block_fig(M)
         breakdown_fig(M, "style", "heldout_style", "catch_by_style.png")
         breakdown_fig(M, "lang", "heldout_lang", "catch_by_lang.png")
         breakdown_fig(M, "trick", "heldout_trick", "catch_by_trick.png")
@@ -165,15 +196,16 @@ def main():
 
 
 def wallet_tables(W):
-    L = ["| experiment | model | AUROC | ECE raw→cal | catch (block) | catch (block+ask) | false block | drain success no FW → FW | attacker gain no FW → FW (test units) |",
-         "|---|---|---|---|---|---|---|---|---|"]
+    L = ["View `wallet` = intent + decoded request + simulated state changes + address labels; `wallet_raw` = intent + raw request JSON only (ablation).\n",
+         "| experiment | model | view | AUROC | ECE raw→cal | catch (block) | catch (block+ask) | false block | drain success no FW → FW | attacker gain no FW → FW (test units) |",
+         "|---|---|---|---|---|---|---|---|---|---|"]
     for m in W:
         o, e = m["overall"], m["episodes"]
-        L.append(f"| {m['experiment']} | {m['model']} | {m['auroc']:.4f} | {m['ece_raw']:.4f}→{m['ece_cal']:.4f} | {pct(o['catch_block'])} | "
+        L.append(f"| {m['experiment']} | {m['model']} | {m['view']} | {m['auroc']:.4f} | {m['ece_raw']:.4f}→{m['ece_cal']:.4f} | {pct(o['catch_block'])} | "
                  f"{pct(o['catch_block_or_ask'])} | {pct(o['false_block'])} | {pct(e['drain_success_no_fw'])} → {pct(e['drain_success_fw'])} | "
                  f"{e['attacker_gain_no_fw']:,.0f} → {e['attacker_gain_fw']:,.0f} |")
     for m in W:
-        if m["model"] == "tfidf_lr":
+        if m["model"] == "tfidf_lr" and m["view"] == "wallet":
             L.append(f"\n**{m['experiment']} — by attack type (tfidf_lr)**\n\n| attack | catch (block+ask) | n |\n|---|---|---|")
             for k, r in m["breakdown"]["attack"].items():
                 if k != "none":

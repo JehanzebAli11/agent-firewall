@@ -10,15 +10,15 @@ session on the DGX Spark (ARM64 + CUDA, 128 GB, repos under `~/lab/`, spark-lab 
 ### Done and verified (result files committed)
 | Piece | Code | Evidence |
 |---|---|---|
-| Sandbox: fake email / docs / shop / bank, 20 tasks, page generator (10 goals × 10 styles × 6 languages incl. Roman Urdu × 8 hiding tricks × 5 positions) | `afw/sandbox/` | `tests/test_sandbox.py` |
+| Sandbox: fake email / docs / shop / bank, 26 tasks (v2: 6 legit tasks on sensitive objects), page generator (10 goals × 10 styles × 6 languages incl. Roman Urdu × 8 hiding tricks × 5 positions) | `afw/sandbox/` | `tests/test_sandbox.py` |
 | Scripted agents (naive / cautious / careful, set follow probabilities) with exact labels; state-checked attack success | `afw/episode.py` | `tests/test_sandbox.py` |
-| Dataset: 120,000 episodes → 123,876 action records (19,030 injected). Deterministic from seed. | `scripts/generate_data.py` | `data/sample_records.jsonl` (first 1,000); full file regenerates in ~15 s |
+| Dataset (v2): 120,000 episodes → 127,300 action records. Deterministic from seed. | `scripts/generate_data.py` | `data/sample_records.jsonl` (first 1,000); full file regenerates in ~15 s |
 | CPU judges (TF-IDF+LR, MLP, gradient boosting), temperature scaling, thresholds at 1% false blocks per action class (ask band 2% general / 5% pay+sign) | `afw/judges/cpu.py`, `afw/calibration.py`, `afw/firewall.py` | `results/metrics.json`, `results/RESULTS.md` |
 | Results: ASR with/without firewall, false blocks on clean runs, breakdowns (style, language, trick, position, goal, task), held-out styles / languages / tricks / tasks, full vs blind view, reliability diagrams | `scripts/train_eval.py`, `scripts/make_report.py` | `results/RESULTS.md`, `results/figures/*.png` |
 | Demo GIF: hidden Roman-Urdu exfiltration blocked on a held-out test episode | `scripts/make_demo_gif.py` | `results/figures/demo_blocked_exfiltration.gif` |
 | Wallet firewall on local anvil: test ERC20+EIP-2612 tokens, NFT, router/marketplace/airdrop, fake drainer; decoding of approve / increaseAllowance / setApprovalForAll / NFT approve / transfer / ETH send / EIP-2612 Permit / EIP-712 typed data / personal_sign; receipt-log simulation of balance & allowance changes; real on-chain drain attempts | `wallet/src/*.sol`, `afw/wallet/` | `tests/test_wallet.py`, `results/wallet_metrics.json` |
 | Out-of-domain adapters (eval only): BIPIA email + CyberSecEval prompt injection | `scripts/external_eval.py` | `results/external_eval.json` |
-| Tests + CI (GitHub Actions, installs Foundry) | `tests/`, `.github/workflows/ci.yml` | `pytest` 15 tests green locally |
+| Tests + CI (GitHub Actions, installs Foundry) | `tests/`, `.github/workflows/ci.yml` | `pytest` 17 tests green locally |
 
 ### Done but tested only against fakes (stub HTTP servers)
 | Piece | Code | What still needs real hardware |
@@ -35,13 +35,24 @@ session on the DGX Spark (ARM64 + CUDA, 128 GB, repos under `~/lab/`, spark-lab 
 - Multi-step agent loops (scripted agents propose all actions from one page read; LLM agent is single-turn).
 - Wallet: Permit2, `eth_signTypedData` for Seaport orders, multicall/batched txs, real token valuations.
 
-### Key findings so far (see `results/RESULTS.md` for all numbers)
-- Full view (task + action + the evidence window the agent cites) on the random split is almost trivially
-  separable for scripted injections — treat it as an upper bound, not a claim about real agents.
-- The informative numbers are: blind view (no evidence), held-out styles/languages/tricks/tasks, and the
-  out-of-domain BIPIA / CyberSecEval transfer, which is **poor** (BIPIA email AUROC 0.41; CyberSecEval
-  flag rate 4.8% at block-or-ask) → the synthetic-only judge does not transfer to natural text. This is the
-  main motivation for the Spark upgrades (real LLM agents, teacher-written variants, Spark-1).
+### Key findings (numbers from `results/metrics.json`, `results/wallet_metrics.json`, `results/external_eval.json`)
+- In distribution, all judges are near-perfect and well calibrated (ECE ≤ 0.003 after temperature scaling).
+  TF-IDF+LR full view, random split: AUROC 0.9999, 99.9% of injected actions stopped, 0.9% legit blocked,
+  attack success 22.4% → 0.0%. Blind view (no evidence): AUROC 0.9986, 98.8% stopped, 1.0% blocked.
+- **The 1% budget generalizes across held-out styles (0.9%), languages (0.1%) and tricks (0.7%), but NOT across
+  held-out tasks:** 40.7% (LR full) to 99.9% (MLP blind) of legit actions on 7 unseen tasks are blocked. The judge
+  learns what legit actions of known tasks look like, not "follows from the request". **This is the #1 problem.**
+- Collateral: false blocks concentrate on legit actions inside injected pages (e.g. legit payments on pages with a
+  "payee account changed" injection: 28.7% blocked).
+- v1 data had a shortcut: only attacks touched credentials, reset emails, gift cards or recovery settings. v2 adds legit tasks on
+  those objects; partial v1 metrics are in `results/metrics_v1.json` (code at commit b696449).
+- Wallet: decoded + simulated view on the random split: AUROC 1.0, 0% legit blocked, drain 97.9% → 0%. Raw-calldata ablation:
+  AUROC 0.9967. Held-out attacks: MLP/GBM miss `wrong_verified_router` (misaligned, not a drain), so drains stay 0%.
+  Held-out intents: 23.3% (LR) / 50.2% (MLP) legit blocked — the same unseen-task failure.
+- Public benchmarks (eval only): no transfer. BIPIA email AUROC 0.40, 0% flagged; CyberSecEval 0/251 flagged.
+- Both failures point to the same fix: judges need training data from many more tasks and natural text (Gemma
+  agents + teacher-written tasks/injections on the Spark) or a pretrained judge (Spark-1). Add a task-family
+  held-out split to every future evaluation.
 
 ---------------------------------------------------------------------------------------------------------
 ## 2. Spark setup for this repo
@@ -80,11 +91,11 @@ artifacts` — **I have not seen spark-lab's schema; map these fields onto it.**
 
 **Step 0 — reproduce the CPU study (sanity).** ~25 min CPU.
 ```bash
-python scripts/generate_data.py --episodes 120000        # {"episodes": 120000, "records": 123876, ...}
+python scripts/generate_data.py --episodes 120000        # {"episodes": 120000, "records": 127300, ...}
 python scripts/train_eval.py --out results/metrics_spark.json --save-models models
 python scripts/make_report.py
 ```
-Expected: numbers within noise of `results/metrics.json` (identical data; sklearn on ARM may differ in 3rd decimal).
+Expected: `{"episodes": 120000, "records": 127300, ...}` and numbers within noise of `results/metrics.json` (identical data; sklearn on ARM may differ in 3rd decimal).
 ```json
 {"name": "afw-reproduce", "cwd": "~/lab/agent-firewall", "gpu": false, "timeout_min": 90,
  "cmd": "bash -lc '. .venv/bin/activate && python scripts/generate_data.py --episodes 120000 && python scripts/train_eval.py --out results/metrics_spark.json && python scripts/make_report.py'",
@@ -185,6 +196,8 @@ commit and push. Keep going down the stretch list in HANDOFF.md when the steps a
 ---------------------------------------------------------------------------------------------------------
 ## Stretch list (keep working down it)
 - [x] BIPIA / CyberSecEval adapters (eval only) — `scripts/external_eval.py`
+- [x] Split-conformal thresholds (`conformal_thresholds` in `afw/calibration.py`, tested; not yet used in the reported numbers)
+- [ ] Teacher-written NEW TASKS (not just injections) to attack the unseen-task false-block problem; evaluate with heldout_task
 - [ ] Train-on-scripted / test-on-teacher-variant split
 - [ ] Multi-step LLM agent loop (observe → act → observe) with the firewall in the loop and agent adaptation after blocks
 - [ ] Permit2 / Seaport / multicall decoding in the wallet firewall

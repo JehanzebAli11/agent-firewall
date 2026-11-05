@@ -6,101 +6,235 @@ Test split = seeds with seed % 10 ∈ {8, 9}. Thresholds set on the validation s
 
 | experiment | model | view | AUROC | ECE raw→cal | catch (block) | catch (block+ask) | false block | false ask | ASR no FW → FW | clean ep. w/ false block | task completion (clean, FW) |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| random | tfidf_lr | full | 0.9999 | 0.0027→0.0020 | 99.6% | 100.0% | 0.9% | 1.8% | 23.0% → 0.0% | 0.0% | 100.0% |
+| random | tfidf_lr | full | 0.9999 | 0.0025→0.0020 | 99.6% | 99.9% | 0.9% | 1.7% | 22.4% → 0.0% | 0.0% | 100.0% |
+| random | mlp | full | 0.9996 | 0.0018→0.0013 | 99.2% | 99.6% | 1.1% | 1.5% | 22.4% → 0.1% | 0.1% | 99.9% |
+| random | gbm | full | 0.9998 | 0.0016→0.0012 | 99.5% | 99.7% | 1.1% | 1.5% | 22.4% → 0.1% | 0.0% | 100.0% |
+| random | tfidf_lr | blind | 0.9986 | 0.0019→0.0014 | 98.7% | 98.8% | 1.0% | 1.3% | 22.4% → 0.3% | 1.1% | 98.9% |
+| random | mlp | blind | 0.9990 | 0.0010→0.0020 | 98.8% | 98.9% | 1.0% | 1.4% | 22.4% → 0.2% | 1.0% | 99.0% |
+| random | gbm | blind | 0.9990 | 0.0011→0.0006 | 98.8% | 99.0% | 1.1% | 1.3% | 22.4% → 0.2% | 0.9% | 99.1% |
+| heldout_style | tfidf_lr | full | 0.9995 | 0.0025→0.0024 | 98.9% | 99.3% | 0.9% | 1.2% | 23.3% → 0.2% | 0.0% | 100.0% |
+| heldout_style | mlp | full | 0.9997 | 0.0011→0.0010 | 98.7% | 99.5% | 1.0% | 1.4% | 23.3% → 0.1% | 0.0% | 100.0% |
+| heldout_style | gbm | full | 0.9997 | 0.0016→0.0010 | 99.1% | 99.7% | 1.1% | 1.3% | 23.3% → 0.1% | 0.0% | 100.0% |
+| heldout_style | tfidf_lr | blind | 0.9984 | 0.0022→0.0018 | 98.4% | 98.6% | 1.1% | 1.5% | 23.3% → 0.3% | 1.0% | 99.0% |
+| heldout_style | mlp | blind | 0.9991 | 0.0011→0.0020 | 98.6% | 98.6% | 0.9% | 1.4% | 23.3% → 0.3% | 0.7% | 99.3% |
+| heldout_style | gbm | blind | 0.9992 | 0.0009→0.0009 | 98.7% | 99.0% | 0.9% | 1.4% | 23.3% → 0.2% | 0.8% | 99.2% |
+| heldout_lang | tfidf_lr | full | 0.9994 | 0.0027→0.0029 | 98.1% | 98.7% | 0.1% | 0.5% | 19.9% → 0.3% | 0.0% | 100.0% |
+| heldout_lang | mlp | full | 0.9995 | 0.0027→0.0023 | 98.7% | 99.0% | 0.2% | 0.5% | 19.9% → 0.2% | 0.0% | 100.0% |
+| heldout_lang | gbm | full | 0.9996 | 0.0014→0.0010 | 99.0% | 99.3% | 0.2% | 0.6% | 19.9% → 0.1% | 0.0% | 100.0% |
+| heldout_lang | tfidf_lr | blind | 0.9985 | 0.0026→0.0021 | 98.6% | 98.8% | 1.0% | 1.5% | 19.9% → 0.2% | 1.0% | 99.0% |
+| heldout_lang | mlp | blind | 0.9992 | 0.0010→0.0030 | 98.7% | 98.8% | 0.9% | 1.4% | 19.9% → 0.2% | 1.0% | 99.0% |
+| heldout_lang | gbm | blind | 0.9989 | 0.0003→0.0013 | 98.8% | 98.8% | 0.9% | 1.4% | 19.9% → 0.2% | 0.9% | 99.1% |
+| heldout_trick | tfidf_lr | full | 0.9988 | 0.0021→0.0015 | 98.6% | 99.4% | 0.7% | 1.6% | 15.2% → 0.1% | 0.0% | 100.0% |
+| heldout_trick | mlp | full | 0.9995 | 0.0014→0.0023 | 99.0% | 99.5% | 0.8% | 1.4% | 15.2% → 0.1% | 0.1% | 99.9% |
+| heldout_trick | gbm | full | 0.9937 | 0.0185→0.0178 | 90.9% | 96.5% | 1.1% | 1.2% | 15.2% → 0.5% | 0.0% | 100.0% |
+| heldout_trick | tfidf_lr | blind | 0.9990 | 0.0032→0.0026 | 98.7% | 98.9% | 0.9% | 1.4% | 15.2% → 0.2% | 0.8% | 99.2% |
+| heldout_trick | mlp | blind | 0.9986 | 0.0035→0.0040 | 98.9% | 98.9% | 1.0% | 1.6% | 15.2% → 0.2% | 0.9% | 99.1% |
+| heldout_trick | gbm | blind | 0.9990 | 0.0010→0.0017 | 99.0% | 99.0% | 0.9% | 1.7% | 15.2% → 0.1% | 0.8% | 99.2% |
+| heldout_task | tfidf_lr | full | 0.8984 | 0.2888→0.2933 | 99.5% | 100.0% | 40.7% | 1.6% | 22.2% → 0.0% | 41.6% | 58.4% |
+| heldout_task | mlp | full | 0.8779 | 0.6227→0.6220 | 100.0% | 100.0% | 96.4% | 2.0% | 22.2% → 0.0% | 96.9% | 3.1% |
+| heldout_task | gbm | full | 0.9246 | 0.5346→0.5257 | 100.0% | 100.0% | 67.1% | 0.0% | 22.2% → 0.0% | 68.5% | 31.5% |
+| heldout_task | tfidf_lr | blind | 0.8522 | 0.3335→0.3337 | 98.7% | 98.7% | 67.4% | 0.2% | 22.2% → 0.3% | 67.9% | 32.1% |
+| heldout_task | mlp | blind | 0.7338 | 0.6333→0.6334 | 100.0% | 100.0% | 99.9% | 0.1% | 22.2% → 0.0% | 99.9% | 0.1% |
+| heldout_task | gbm | blind | 0.9183 | 0.5152→0.5118 | 100.0% | 100.0% | 96.6% | 0.2% | 22.2% → 0.0% | 96.2% | 3.8% |
 
 ### Breakdown by injection style (tfidf_lr, full view)
 
-| style | random: catch / false block (n+ / n−) |
-|---|---|
-| authority | 100.0% / 1.2% (396/1570) |
-| completion | 100.0% / 0.8% (421/1579) |
-| data_field | 100.0% / 0.8% (537/1632) |
-| direct | 100.0% / 0.8% (261/1592) |
-| json_tool | 100.0% / 1.7% (348/1531) |
-| none | — / 0.0% (0/5242) |
-| polite | 100.0% / 1.1% (242/1582) |
-| roleplay | 100.0% / 1.4% (273/1526) |
-| system | 100.0% / 0.9% (476/1612) |
-| urgent | 100.0% / 1.3% (345/1525) |
-| user_voice | 100.0% / 1.5% (433/1556) |
+| style | random: catch / false block (n+ / n−) | heldout_style: catch / false block (n+ / n−) |
+|---|---|---|
+| authority | 100.0% / 1.5% (402/1645) |  |
+| completion | 100.0% / 1.3% (435/1643) |  |
+| data_field | 100.0% / 1.2% (539/1693) | 99.1% / 0.8% (539/1693) |
+| direct | 100.0% / 0.4% (258/1638) |  |
+| json_tool | 99.7% / 1.5% (345/1604) | 99.4% / 2.8% (345/1604) |
+| none | — / 0.0% (0/5388) | — / 0.0% (0/5388) |
+| polite | 99.6% / 1.0% (229/1624) |  |
+| roleplay | 100.0% / 1.8% (281/1575) | 99.6% / 1.9% (281/1575) |
+| system | 100.0% / 0.8% (461/1672) |  |
+| urgent | 100.0% / 1.3% (348/1557) |  |
+| user_voice | 100.0% / 1.6% (441/1623) |  |
 
 ### By language
 
-| lang | random: catch / false block (n+ / n−) |
-|---|---|
-| de | 100.0% / 1.5% (596/2528) |
-| en | 100.0% / 1.0% (722/2627) |
-| es | 100.0% / 1.3% (630/2630) |
-| fr | 100.0% / 1.1% (678/2649) |
-| none | — / 0.0% (0/5242) |
-| ur_rom | 100.0% / 1.5% (510/2600) |
-| zh | 100.0% / 0.4% (596/2671) |
+| lang | random: catch / false block (n+ / n−) | heldout_lang: catch / false block (n+ / n−) |
+|---|---|---|
+| de | 99.8% / 1.3% (603/2629) |  |
+| en | 100.0% / 1.0% (733/2730) |  |
+| es | 100.0% / 1.5% (635/2722) |  |
+| fr | 99.8% / 1.4% (652/2731) |  |
+| none | — / 0.0% (0/5388) | — / 0.0% (0/5388) |
+| ur_rom | 100.0% / 1.5% (534/2743) | 99.4% / 0.4% (534/2743) |
+| zh | 100.0% / 0.7% (582/2719) | 98.1% / 0.0% (582/2719) |
 
 ### By hiding trick
 
-| trick | random: catch / false block (n+ / n−) |
-|---|---|
-| alt_text | 100.0% / 1.1% (462/2067) |
-| base64 | 100.0% / 0.0% (195/1909) |
-| css_hidden | 100.0% / 1.1% (536/2004) |
-| html_comment | 100.0% / 1.2% (484/1976) |
-| none | 100.0% / 0.5% (548/7111) |
-| tiny_font | 100.0% / 1.2% (518/1877) |
-| white_text | 100.0% / 1.6% (553/1976) |
-| zero_width | 100.0% / 1.2% (436/2027) |
+| trick | random: catch / false block (n+ / n−) | heldout_trick: catch / false block (n+ / n−) |
+|---|---|---|
+| alt_text | 99.8% / 1.5% (473/2118) |  |
+| base64 | 100.0% / 0.1% (210/1968) | 98.1% / 2.8% (210/1968) |
+| css_hidden | 100.0% / 1.6% (552/2089) |  |
+| html_comment | 100.0% / 1.5% (464/2015) |  |
+| none | 100.0% / 0.3% (537/7357) | — / 0.0% (0/5388) |
+| tiny_font | 100.0% / 1.2% (536/1985) |  |
+| white_text | 99.8% / 1.3% (550/2038) |  |
+| zero_width | 100.0% / 1.5% (417/2092) | 100.0% / 0.4% (417/2092) |
 
 ### By goal
 
 | goal | random: catch / false block (n+ / n−) |
 |---|---|
-| delete | 100.0% / 0.6% (357/1682) |
-| exfil | 100.0% / 0.1% (412/1767) |
-| forward | 100.0% / 0.1% (360/1717) |
-| giftcard | 100.0% / 0.3% (407/1694) |
-| leak_contact | 100.0% / 0.1% (411/1739) |
-| none | — / 0.0% (0/5242) |
-| phish | 100.0% / 3.0% (438/1685) |
-| recovery | 100.0% / 0.1% (424/1723) |
-| redirect | 100.0% / 28.8% (64/281) |
-| share | 100.0% / 0.2% (442/1771) |
-| transfer | 100.0% / 1.4% (417/1646) |
+| delete | 99.7% / 1.4% (370/1736) |
+| exfil | 100.0% / 0.1% (403/1801) |
+| forward | 100.0% / 0.2% (376/1822) |
+| giftcard | 100.0% / 0.2% (406/1781) |
+| leak_contact | 100.0% / 0.1% (410/1795) |
+| none | — / 0.0% (0/5388) |
+| phish | 99.8% / 3.9% (429/1765) |
+| recovery | 100.0% / 0.2% (432/1802) |
+| redirect | 100.0% / 28.7% (48/209) |
+| share | 100.0% / 1.0% (433/1829) |
+| transfer | 100.0% / 1.1% (432/1734) |
 
 ### By position
 
 | position | random: catch / false block (n+ / n−) |
 |---|---|
-| bottom | 100.0% / 1.7% (708/3084) |
-| field | 100.0% / 1.2% (834/3085) |
-| footer | 100.0% / 1.4% (620/3171) |
-| middle | 100.0% / 1.2% (744/3178) |
-| none | — / 0.0% (0/5242) |
-| top | 100.0% / 0.3% (826/3187) |
+| bottom | 100.0% / 1.4% (725/3206) |
+| field | 100.0% / 1.1% (810/3189) |
+| footer | 99.8% / 1.4% (621/3353) |
+| middle | 99.9% / 1.7% (758/3239) |
+| none | — / 0.0% (0/5388) |
+| top | 100.0% / 0.5% (825/3287) |
 
 ### By task (held-out tasks T16–T20 in the right column)
 
-| task_id | random: catch / false block (n+ / n−) |
-|---|---|
-| T01_reply_offsite | 100.0% / 0.0% (208/1232) |
-| T02_newsletter | 100.0% / 0.0% (196/1253) |
-| T03_forward_itinerary | 100.0% / 0.0% (189/1267) |
-| T04_share_roadmap | 100.0% / 0.0% (177/1172) |
-| T05_fix_notes | 100.0% / 0.0% (204/1181) |
-| T06_delete_draft | 100.0% / 1.7% (171/1150) |
-| T07_onboarding | 100.0% / 0.0% (197/1211) |
-| T08_vendor_contacts | 100.0% / 0.0% (173/1129) |
-| T09_batteries | 100.0% / 0.0% (202/1239) |
-| T10_reorder_coffee | 100.0% / 0.0% (182/1163) |
-| T11_blender | 100.0% / 0.0% (184/641) |
-| T12_pay_bill | 100.0% / 2.7% (174/1188) |
-| T13_send_brother | 100.0% / 0.0% (202/1226) |
-| T14_pay_rent | 100.0% / 3.2% (196/1199) |
-| T15_balance | 100.0% / — (181/0) |
-| T16_split_dinner | 100.0% / 1.5% (170/1119) |
-| T17_update_address | 100.0% / 0.0% (183/1176) |
-| T18_webinar | 100.0% / 6.1% (172/1206) |
-| T19_inbox_summary | 100.0% / — (194/0) |
-| T20_review | 100.0% / 0.0% (177/1195) |
+| task_id | random: catch / false block (n+ / n−) | heldout_task: catch / false block (n+ / n−) |
+|---|---|---|
+| T01_reply_offsite | 100.0% / 0.0% (145/926) |  |
+| T02_newsletter | 100.0% / 0.0% (144/964) |  |
+| T03_forward_itinerary | 100.0% / 0.0% (152/961) |  |
+| T04_share_roadmap | 100.0% / 0.0% (140/925) |  |
+| T05_fix_notes | 100.0% / 0.0% (151/916) |  |
+| T06_delete_draft | 100.0% / 1.9% (131/886) |  |
+| T07_onboarding | 100.0% / 0.0% (150/931) |  |
+| T08_vendor_contacts | 100.0% / 0.0% (132/855) |  |
+| T09_batteries | 100.0% / 0.0% (155/944) |  |
+| T10_reorder_coffee | 100.0% / 0.0% (139/900) |  |
+| T11_blender | 100.0% / 0.0% (140/489) |  |
+| T12_pay_bill | 100.0% / 2.2% (140/907) |  |
+| T13_send_brother | 100.0% / 0.0% (154/933) |  |
+| T14_pay_rent | 100.0% / 4.1% (145/913) |  |
+| T15_balance | 100.0% / — (130/0) |  |
+| T16_split_dinner | 100.0% / 1.3% (132/874) | 100.0% / 3.0% (132/874) |
+| T17_update_address | 100.0% / 0.0% (149/911) | 100.0% / 0.0% (149/911) |
+| T18_webinar | 98.5% / 7.7% (135/948) | 100.0% / 100.0% (135/948) |
+| T19_inbox_summary | 100.0% / — (148/0) | 100.0% / — (148/0) |
+| T20_review | 100.0% / 0.0% (130/918) | 100.0% / 34.6% (130/918) |
+| T21_forward_reset | 100.0% / 0.0% (157/979) |  |
+| T22_share_salary | 100.0% / 0.0% (158/909) |  |
+| T23_key_to_devops | 100.0% / 0.0% (143/907) |  |
+| T24_giftcard | 100.0% / 0.0% (163/933) |  |
+| T25_change_recovery | 100.0% / 0.0% (139/895) | 100.0% / 0.0% (139/895) |
+| T26_delete_contracts | 100.0% / 4.7% (137/938) | 100.0% / 100.0% (137/938) |
 
 ### Blind view (task + action only, no evidence) by style
 
+| style | random: catch / false block (n+ / n−) | heldout_style: catch / false block (n+ / n−) |
+|---|---|---|
+| authority | 98.8% / 1.2% (402/1645) |  |
+| completion | 99.3% / 1.0% (435/1643) |  |
+| data_field | 98.7% / 1.5% (539/1693) | 98.7% / 1.4% (539/1693) |
+| direct | 98.4% / 0.9% (258/1638) |  |
+| json_tool | 98.3% / 1.2% (345/1604) | 98.3% / 1.2% (345/1604) |
+| none | — / 1.1% (0/5388) | — / 1.0% (0/5388) |
+| polite | 99.1% / 0.9% (229/1624) |  |
+| roleplay | 98.9% / 0.8% (281/1575) | 98.9% / 0.9% (281/1575) |
+| system | 98.7% / 1.0% (461/1672) |  |
+| urgent | 98.3% / 1.0% (348/1557) |  |
+| user_voice | 99.5% / 0.9% (441/1623) |  |
 
+## Wallet signature firewall
+
+View `wallet` = intent + decoded request + simulated state changes + address labels; `wallet_raw` = intent + raw request JSON only (ablation).
+
+| experiment | model | view | AUROC | ECE raw→cal | catch (block) | catch (block+ask) | false block | drain success no FW → FW | attacker gain no FW → FW (test units) |
+|---|---|---|---|---|---|---|---|---|---|
+| random | tfidf_lr | wallet | 1.0000 | 0.0004→0.0000 | 100.0% | 100.0% | 0.0% | 97.9% → 0.0% | 724,539 → 0 |
+| random | mlp | wallet | 1.0000 | 0.0033→0.0009 | 100.0% | 100.0% | 0.8% | 97.9% → 0.0% | 724,539 → 0 |
+| random | gbm | wallet | 1.0000 | 0.0008→0.0009 | 99.9% | 100.0% | 1.1% | 97.9% → 0.0% | 724,539 → 0 |
+| random | tfidf_lr | wallet_raw | 0.9967 | 0.0317→0.0114 | 98.2% | 98.5% | 0.9% | 97.9% → 0.0% | 724,539 → 0 |
+| heldout_attack | tfidf_lr | wallet | 1.0000 | 0.0150→0.0157 | 100.0% | 100.0% | 0.0% | 86.4% → 0.0% | 129,111 → 0 |
+| heldout_attack | mlp | wallet | 0.9375 | 0.0127→0.0157 | 87.6% | 87.6% | 0.6% | 86.4% → 0.0% | 129,111 → 0 |
+| heldout_attack | gbm | wallet | 0.9320 | 0.0157→0.0157 | 86.4% | 86.4% | 0.0% | 86.4% → 0.0% | 129,111 → 0 |
+| heldout_attack | tfidf_lr | wallet_raw | 0.9159 | 0.0226→0.0151 | 86.4% | 86.4% | 1.0% | 86.4% → 0.0% | 129,111 → 0 |
+| heldout_intent | tfidf_lr | wallet | 1.0000 | 0.0014→0.0000 | 100.0% | 100.0% | 23.3% | 100.0% → 0.0% | 273,678 → 0 |
+| heldout_intent | mlp | wallet | 1.0000 | 0.1601→0.1524 | 100.0% | 100.0% | 50.2% | 100.0% → 0.0% | 273,678 → 0 |
+| heldout_intent | gbm | wallet | 1.0000 | 0.0000→0.0000 | 100.0% | 100.0% | 0.0% | 100.0% → 0.0% | 273,678 → 0 |
+| heldout_intent | tfidf_lr | wallet_raw | 0.9931 | 0.2860→0.2922 | 100.0% | 100.0% | 57.8% | 100.0% → 0.0% | 273,678 → 0 |
+
+**random — by attack type (tfidf_lr)**
+
+| attack | catch (block+ask) | n |
+|---|---|---|
+| address_swap_drainer | 100.0% | 128 |
+| approve_drainer | 100.0% | 263 |
+| direct_transfer | 100.0% | 37 |
+| nft_approve_drainer | 100.0% | 64 |
+| operator_all | 100.0% | 184 |
+| permit_phish | 100.0% | 109 |
+| recipient_swap | 100.0% | 152 |
+| wrong_spender | 100.0% | 35 |
+| wrong_spender_permit | 100.0% | 107 |
+| wrong_verified_router | 100.0% | 23 |
+
+**random — false blocks by intent (tfidf_lr)**
+
+| intent | false block | false ask | n legit |
+|---|---|---|---|
+| claim | 0.0% | 0.0% | 150 |
+| explicit_address | 0.0% | 0.0% | 152 |
+| gasless_permit | 0.0% | 0.0% | 127 |
+| list_nft | 0.0% | 0.0% | 151 |
+| login | 0.0% | 0.0% | 147 |
+| revoke | 0.0% | 0.0% | 144 |
+| send_eth | 0.0% | 0.0% | 127 |
+| send_token | 0.0% | 0.0% | 152 |
+| swap | 0.0% | 0.0% | 148 |
+
+**heldout_attack — by attack type (tfidf_lr)**
+
+| attack | catch (block+ask) | n |
+|---|---|---|
+| direct_transfer | 100.0% | 37 |
+| permit_phish | 100.0% | 109 |
+| wrong_verified_router | 100.0% | 23 |
+
+**heldout_attack — false blocks by intent (tfidf_lr)**
+
+| intent | false block | false ask | n legit |
+|---|---|---|---|
+| claim | 0.0% | 0.0% | 150 |
+| explicit_address | 0.0% | 0.0% | 152 |
+| gasless_permit | 0.0% | 0.0% | 127 |
+| list_nft | 0.0% | 0.0% | 151 |
+| login | 0.0% | 0.0% | 147 |
+| revoke | 0.0% | 0.0% | 144 |
+| send_eth | 0.0% | 0.0% | 127 |
+| send_token | 0.0% | 0.0% | 152 |
+| swap | 0.0% | 0.0% | 148 |
+
+**heldout_intent — by attack type (tfidf_lr)**
+
+| attack | catch (block+ask) | n |
+|---|---|---|
+| address_swap_drainer | 100.0% | 128 |
+| approve_drainer | 100.0% | 167 |
+| direct_transfer | 100.0% | 37 |
+| operator_all | 100.0% | 59 |
+
+**heldout_intent — false blocks by intent (tfidf_lr)**
+
+| intent | false block | false ask | n legit |
+|---|---|---|---|
+| claim | 0.0% | 0.0% | 150 |
+| explicit_address | 68.4% | 23.7% | 152 |
+| revoke | 0.0% | 0.0% | 144 |
