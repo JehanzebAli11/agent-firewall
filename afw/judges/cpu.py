@@ -18,7 +18,7 @@ class Featurizer:
     """TF-IDF (word 1-2 + char 2-4) + structured features; optional SVD for dense models.
     One instance can be shared by several judges trained on the same split (fit once)."""
 
-    def __init__(self, view="full", seed=0, n_svd=256):
+    def __init__(self, view="full", seed=0, n_svd=192):
         self.view, self.seed, self.n_svd = view, seed, n_svd
         self.fitted, self.svd = False, None
 
@@ -44,9 +44,10 @@ class Featurizer:
         return self.sc.transform(struct_matrix(recs, self.view))
 
     def dense(self, recs, fit=False):
-        X = self.sparse(recs)
+        # SVD over WORD tf-idf only: the char n-gram block is ~10x denser and makes SVD the bottleneck
+        X = self.wv.transform([make_text(r, self.view) for r in recs])
         if self.svd is None:
-            self.svd = TruncatedSVD(self.n_svd, random_state=self.seed, algorithm="randomized", n_iter=4).fit(X)
+            self.svd = TruncatedSVD(self.n_svd, random_state=self.seed, algorithm="randomized", n_iter=3).fit(X)
             Z = self.svd.transform(X)
             self.dsc = StandardScaler().fit(np.hstack([Z, self.struct(recs)]))
         else:
