@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+models/
+data/records.jsonl.gz
+data/episodes.jsonl.gz
+wallet/out/
+wallet/cache/
+wallet/lib/
+.pytest_cache/
+*.egg-info/
