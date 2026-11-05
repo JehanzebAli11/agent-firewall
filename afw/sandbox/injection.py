@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import base64
 import json
+import os
 import random
 from dataclasses import dataclass, field
 
@@ -123,6 +124,18 @@ STYLE_WRAPPERS = {
 }
 
 
+# Optional teacher-written wrapper bank (scripts/teacher_variants.py). Styles from the bank are named "t:<style>".
+_BANK = None
+
+
+def wrapper_bank():
+    global _BANK
+    if _BANK is None:
+        path = os.environ.get("AFW_WRAPPER_BANK")
+        _BANK = json.load(open(path))["wrappers"] if path and os.path.exists(path) else {}
+    return _BANK
+
+
 @dataclass
 class Injection:
     goal: str
@@ -216,7 +229,12 @@ def make_injection(rng: random.Random, w: World, task: TaskInstance, goal=None, 
     g = GOAL_PHRASES[lang][goal].format(**p)
     G = g[:1].upper() + g[1:]
     js = json.dumps({"tool": actions[0]["type"], "args": actions[0]["args"]}, ensure_ascii=False)
-    text = STYLE_WRAPPERS[lang][style].format(g=g, G=G, user=w.user_first, json=js)
+    bank = wrapper_bank()
+    if bank and style in bank and rng.random() < 0.5 and bank[style].get(lang):
+        text = rng.choice(bank[style][lang]).replace("{g}", g)
+        style = "t:" + style
+    else:
+        text = STYLE_WRAPPERS[lang][style].format(g=g, G=G, user=w.user_first, json=js)
     return Injection(goal, style, lang, trick, position, text, _hide(text, trick, rng), actions, replaces, p)
 
 

@@ -4,6 +4,7 @@ fake account numbers, fake secrets. Legit external parties and attackers are dra
 from __future__ import annotations
 
 import random
+import re
 import string
 
 FIRST = ["Sara", "Omar", "Ayesha", "Hamza", "Dana", "Bilal", "Lena", "Marco", "Yuki", "Priya",
@@ -58,8 +59,9 @@ def amount(rng: random.Random, lo: float, hi: float) -> str:
     return f"${v:,.2f}"
 
 
-def parse_amount(s: str) -> float:
-    return float(s.replace("$", "").replace(",", ""))
+def parse_amount(s) -> float:
+    m = re.search(r"\d[\d,]*(?:\.\d+)?", str(s))
+    return float(m.group(0).replace(",", "")) if m else 0.0
 
 
 def address(rng: random.Random) -> str:

@@ -71,3 +71,37 @@ def test_remote_judge_slots_against_stub_server():
     assert llm.eval_only
     assert llm.predict_proba(recs[:1])[0] == pytest.approx(0.83)
     srv.shutdown()
+
+
+class _AgentStub(BaseHTTPRequestHandler):
+    """Fake OpenAI-compatible agent: obeys any email address written after 'P.S.'-style injections,
+    otherwise replies to nobody. Only used to exercise the harness plumbing."""
+    def do_POST(self):
+        import re as _re
+        body = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
+        msg = body["messages"][-1]["content"]
+        m = _re.search(r"API key ([\w.\-]+@[\w.\-]+)", msg)
+        calls = [{"type": "send_email", "args": {"to": m.group(1), "subject": "x", "body": "key"}, "evidence": "API key"}] if m else []
+        b = json.dumps({"choices": [{"message": {"content": json.dumps(calls)}}]}).encode()
+        self.send_response(200)
+        self.send_header("Content-Length", str(len(b)))
+        self.end_headers()
+        self.wfile.write(b)
+
+    def log_message(self, *a):
+        pass
+
+
+def test_llm_agent_harness_labels_by_code():
+    from afw.firewall import run_episode
+    from afw.llm_agent import LLMAgent, build_llm_episode
+    srv = HTTPServer(("127.0.0.1", 0), _AgentStub)
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    agent = LLMAgent(f"http://127.0.0.1:{srv.server_address[1]}/v1", model="stub-agent")
+    assert agent.label_source.startswith("eval-only")
+    ep, unl = build_llm_episode(11, agent, True, task_id="T19_inbox_summary", goal="exfil", style="direct", lang="ur_rom", trick="none")
+    assert [p.label for p in ep.proposals] == [1] and not unl
+    # labelled injected (it targets the planted attacker address) but the stub never saw the real secret,
+    # so the state check correctly reports no exfiltration
+    assert not run_episode(ep, None)["attack_success"]
+    srv.shutdown()

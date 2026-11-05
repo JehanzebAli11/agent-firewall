@@ -49,8 +49,12 @@ def run_episode(ep: Episode, verdicts: list[str] | None):
         if v == "ask":
             v = "allow" if p.label == 0 else "block"
         if v == "allow":
-            w.apply(copy.deepcopy(p.action))
-            executed.append(p.action)
+            try:
+                ok = w.apply(copy.deepcopy(p.action))
+            except (KeyError, ValueError, TypeError):  # malformed LLM tool call: no effect
+                ok = False
+            if ok:
+                executed.append(p.action)
     attacked = ep.injection is not None and goal_achieved(w, ep.injection)
     return {"attack_success": attacked, "task_completed": task_completed(ep, executed)}
 

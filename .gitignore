@@ -9,3 +9,4 @@ wallet/lib/
 .pytest_cache/
 *.egg-info/
 data/wallet_records.jsonl.gz
+external/
