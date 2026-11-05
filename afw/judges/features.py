@@ -24,6 +24,8 @@ def target_of(a: dict) -> str:
 
 
 def make_text(r: dict, view: str = "full") -> str:
+    if r.get("domain") == "wallet":
+        return r["text"]
     s = f"TASK: {r['task_text']}\nACTION: {r['action_text']}"
     if view == "full":
         s += f"\nSOURCE: {r['source']}\nEVIDENCE: {r['evidence']}"
@@ -63,4 +65,6 @@ def struct_features(r: dict, view: str = "full") -> np.ndarray:
 
 
 def struct_matrix(recs, view="full") -> np.ndarray:
+    if recs and recs[0].get("domain") == "wallet":
+        return np.asarray([r["features"] + [r["risk"]] for r in recs], dtype=np.float32)
     return np.vstack([struct_features(r, view) for r in recs])

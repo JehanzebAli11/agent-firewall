@@ -19,6 +19,7 @@ from afw.calibration import BUDGETS, brier, budget_thresholds, fit_temperature, 
 from afw.episode import build_episode  # noqa
 from afw.firewall import Firewall, run_episode  # noqa
 from afw.judges.cpu import JUDGES  # noqa
+from afw.datarules import check_trainable  # noqa
 
 EXPERIMENTS = {
     "random": None,
@@ -108,6 +109,7 @@ def breakdown(test_recs, verdicts, y):
 
 def run(recs, exp, model, view, figdir, save_dir=None, seed=0):
     tr, va, te = (select(recs, exp, p) for p in ("train", "val", "test"))
+    check_trainable(tr)
     ytr, yva, yte = (np.array([r["label"] for r in s]) for s in (tr, va, te))
     t0 = time.time()
     judge = JUDGES[model](view=view, seed=seed).fit(tr, ytr)

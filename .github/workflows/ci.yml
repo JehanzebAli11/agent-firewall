@@ -1,0 +1,19 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: stable
+      - run: pip install -r requirements.txt
+      - name: Rebuild contracts and check committed artifacts load
+        run: |
+          (cd wallet && forge build)
+          python scripts/wallet_artifacts.py
+      - run: python -m pytest -q
