@@ -7,8 +7,8 @@ from afw.sandbox.sites import extract_text, visible_text
 from afw.sandbox.tasks import TASKS
 
 
-def test_twenty_tasks_build_and_are_deterministic():
-    assert len(TASKS) == 20
+def test_all_tasks_build_and_are_deterministic():
+    assert len(TASKS) == 26
     for i, tid in enumerate(sorted(TASKS)):
         a = episode_records(build_episode(100 + i, "naive", True, task_id=tid))
         b = episode_records(build_episode(100 + i, "naive", True, task_id=tid))

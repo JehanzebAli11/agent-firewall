@@ -53,3 +53,21 @@ def budget_thresholds(p: np.ndarray, y: np.ndarray, cls: np.ndarray, budgets=BUD
                   "ask": float(np.quantile(neg, 1 - b["ask"], method="higher"))}
         out[c]["ask"] = min(out[c]["ask"], out[c]["block"])
     return out
+
+
+def conformal_thresholds(p: np.ndarray, y: np.ndarray, cls: np.ndarray, budgets=BUDGETS) -> dict:
+    """Split-conformal variant: threshold = k-th smallest legit score with k = ceil((n+1)(1-alpha)).
+    Under exchangeability of calibration and future legit actions, P(false block) <= alpha (marginal)."""
+    out = {}
+    for c, b in budgets.items():
+        neg = np.sort(p[(y == 0) & (cls == c)])
+        if len(neg) < 50:
+            neg = np.sort(p[y == 0])
+        n = len(neg)
+        t = {}
+        for kind in ("block", "ask"):
+            k = int(np.ceil((n + 1) * (1 - b[kind])))
+            t[kind] = float(neg[k - 1]) if k <= n else 1.0
+        t["ask"] = min(t["ask"], t["block"])
+        out[c] = t
+    return out

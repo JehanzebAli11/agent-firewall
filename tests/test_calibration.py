@@ -33,3 +33,11 @@ def test_saturated_scores_do_not_block_everything():
     from afw.firewall import Firewall
     fw = Firewall(None, 1.0, th)
     assert fw.decide_p(0.0, "general", 0.9) == "allow"
+
+
+def test_conformal_thresholds_hold_out_of_sample():
+    from afw.calibration import conformal_thresholds
+    rng = np.random.default_rng(3)
+    cal, new = rng.random(4000), rng.random(200000)
+    th = conformal_thresholds(cal, np.zeros(4000, int), np.array(["general"] * 4000))
+    assert (new > th["general"]["block"]).mean() <= 0.012

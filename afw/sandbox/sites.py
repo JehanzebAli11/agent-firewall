@@ -57,6 +57,7 @@ class World:
     opened: list = field(default_factory=list)
     reviews: list = field(default_factory=list)
     deleted: list = field(default_factory=list)
+    settings_history: list = field(default_factory=list)  # (field, value) for every change, even if later overwritten
 
     @property
     def user_name(self):
@@ -97,6 +98,7 @@ class World:
             self.transfers.append({"to": g["to_account"], "amount": amt, "memo": g.get("memo", "")})
         elif t == "change_settings":
             self.settings[g["field"]] = g["value"]
+            self.settings_history.append((g["field"], g["value"]))
         elif t == "open_link":
             self.opened.append(g["url"])
         elif t == "post_review":

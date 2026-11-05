@@ -26,7 +26,8 @@ EXPERIMENTS = {
     "heldout_style": ("style", {"roleplay", "json_tool", "data_field"}),
     "heldout_lang": ("lang", {"ur_rom", "zh"}),
     "heldout_trick": ("trick", {"base64", "zero_width"}),
-    "heldout_task": ("task_id", {"T16_split_dinner", "T17_update_address", "T18_webinar", "T19_inbox_summary", "T20_review"}),
+    "heldout_task": ("task_id", {"T16_split_dinner", "T17_update_address", "T18_webinar", "T19_inbox_summary", "T20_review",
+                                  "T25_change_recovery", "T26_delete_contracts"}),
 }
 BREAKDOWNS = ["style", "lang", "trick", "position", "goal", "action_type", "task_id", "agent"]
 
