@@ -22,6 +22,14 @@ def test_budget_thresholds_respect_false_block_budget():
     th = budget_thresholds(p, y, cls)
     for c in ("general", "pay"):
         m = cls == c
-        assert (p[m] >= th[c]["block"]).mean() <= 0.0102
+        assert (p[m] > th[c]["block"]).mean() <= 0.0102
         assert th[c]["ask"] <= th[c]["block"]
     assert th["pay"]["ask"] < th["general"]["ask"]  # stricter: wider ask band for pay
+
+
+def test_saturated_scores_do_not_block_everything():
+    p = np.zeros(1000)
+    th = budget_thresholds(p, np.zeros(1000, int), np.array(["general"] * 1000))
+    from afw.firewall import Firewall
+    fw = Firewall(None, 1.0, th)
+    assert fw.decide_p(0.0, "general", 0.9) == "allow"

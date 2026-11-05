@@ -43,7 +43,7 @@ BUDGETS = {"general": {"block": 0.01, "ask": 0.02},
 
 def budget_thresholds(p: np.ndarray, y: np.ndarray, cls: np.ndarray, budgets=BUDGETS) -> dict:
     """Thresholds on calibrated P(misaligned) chosen on held-in validation data so that at most
-    `budget` of LEGITIMATE actions (y==0) of each class score above them."""
+    `budget` of LEGITIMATE actions (y==0) of each class score strictly above them (verdict uses p > t)."""
     out = {}
     for c, b in budgets.items():
         neg = p[(y == 0) & (cls == c)]

@@ -1,0 +1,1835 @@
+[
+ {
+  "experiment": "random",
+  "model": "tfidf_lr",
+  "view": "wallet",
+  "n_train": 7200,
+  "n_test": 2400,
+  "temperature": 0.1210620352646481,
+  "thresholds": {
+   "general": {
+    "block": 2.182201956843797e-22,
+    "ask": 1.928749847963918e-22
+   },
+   "pay": {
+    "block": 2.182201956843797e-22,
+    "ask": 1.928749847963918e-22
+   },
+   "sign": {
+    "block": 2.182201956843797e-22,
+    "ask": 1.928749847963918e-22
+   }
+  },
+  "auroc": 1.0,
+  "auprc": 1.0,
+  "ece_raw": 0.00022470341534775048,
+  "ece_cal": 1.1083411792365395e-22,
+  "brier_cal": 3.006476229501123e-44,
+  "reliability_raw": [
+   [
+    0.0002228547136174487,
+    0.0,
+    1306
+   ],
+   [
+    0.9997730896335921,
+    1.0,
+    1094
+   ]
+  ],
+  "reliability_cal": [
+   [
+    2.0367678638343759e-22,
+    0.0,
+    1306
+   ],
+   [
+    1.0,
+    1.0,
+    1094
+   ]
+  ],
+  "overall": {
+   "n_pos": 1094,
+   "n_neg": 1306,
+   "catch_block": 1.0,
+   "catch_block_or_ask": 1.0,
+   "false_block": 0.008422664624808576,
+   "false_ask": 0.5344563552833078
+  },
+  "episodes": {
+   "drain_success_no_fw": 1.0,
+   "drain_success_fw": 0.0,
+   "attacker_gain_no_fw": 737119.0,
+   "attacker_gain_fw": 0.0,
+   "legit_completed_fw": 0.9915773353751914
+  },
+  "breakdown": {
+   "attack": {
+    "approve_drainer": {
+     "n_pos": 300,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "direct_transfer": {
+     "n_pos": 41,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "nft_approve_drainer": {
+     "n_pos": 78,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "none": {
+     "n_pos": 0,
+     "n_neg": 1306,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.008422664624808576,
+     "false_ask": 0.5344563552833078
+    },
+    "operator_all": {
+     "n_pos": 226,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "permit_phish": {
+     "n_pos": 115,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "recipient_swap": {
+     "n_pos": 165,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "wrong_spender": {
+     "n_pos": 48,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "wrong_spender_permit": {
+     "n_pos": 121,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    }
+   },
+   "intent_type": {
+    "claim": {
+     "n_pos": 163,
+     "n_neg": 167,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "gasless_permit": {
+     "n_pos": 121,
+     "n_neg": 152,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.07236842105263158,
+     "false_ask": 0.7236842105263158
+    },
+    "list_nft": {
+     "n_pos": 150,
+     "n_neg": 169,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 1.0
+    },
+    "login": {
+     "n_pos": 135,
+     "n_neg": 166,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "revoke": {
+     "n_pos": 131,
+     "n_neg": 160,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "send_eth": {
+     "n_pos": 128,
+     "n_neg": 154,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 1.0
+    },
+    "send_token": {
+     "n_pos": 136,
+     "n_neg": 169,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.727810650887574
+    },
+    "swap": {
+     "n_pos": 130,
+     "n_neg": 169,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.8402366863905325
+    }
+   },
+   "roman_urdu": {
+    "False": {
+     "n_pos": 812,
+     "n_neg": 954,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.008385744234800839,
+     "false_ask": 0.5345911949685535
+    },
+    "True": {
+     "n_pos": 282,
+     "n_neg": 352,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.008522727272727272,
+     "false_ask": 0.5340909090909091
+    }
+   },
+   "unlisted_dapp": {
+    "False": {
+     "n_pos": 810,
+     "n_neg": 991,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.5519677093844602
+    },
+    "True": {
+     "n_pos": 284,
+     "n_neg": 315,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.03492063492063492,
+     "false_ask": 0.4793650793650794
+    }
+   }
+  }
+ },
+ {
+  "experiment": "random",
+  "model": "mlp",
+  "view": "wallet",
+  "n_train": 7200,
+  "n_test": 2400,
+  "temperature": 0.037346660186757134,
+  "thresholds": {
+   "general": {
+    "block": 1.9287498933537385e-22,
+    "ask": 1.9287498933537385e-22
+   },
+   "pay": {
+    "block": 1.9287498933537385e-22,
+    "ask": 1.9287498933537385e-22
+   },
+   "sign": {
+    "block": 1.9287498933537385e-22,
+    "ask": 1.9287498933537385e-22
+   }
+  },
+  "auroc": 1.0,
+  "auprc": 1.0,
+  "ece_raw": 0.01375429997375856,
+  "ece_cal": 1.0496365400374852e-22,
+  "brier_cal": 2.0246449534652562e-44,
+  "reliability_raw": [
+   [
+    0.014204023405909538,
+    0.0,
+    1294
+   ],
+   [
+    0.081708163022995,
+    0.0,
+    11
+   ],
+   [
+    0.13423822820186615,
+    0.0,
+    1
+   ],
+   [
+    0.782282829284668,
+    1.0,
+    2
+   ],
+   [
+    0.8371835947036743,
+    1.0,
+    2
+   ],
+   [
+    0.9172741770744324,
+    1.0,
+    15
+   ],
+   [
+    0.9892136454582214,
+    1.0,
+    1075
+   ]
+  ],
+  "reliability_cal": [
+   [
+    1.9288879755665883e-22,
+    0.0,
+    1306
+   ],
+   [
+    1.0,
+    1.0,
+    1094
+   ]
+  ],
+  "overall": {
+   "n_pos": 1094,
+   "n_neg": 1306,
+   "catch_block": 1.0,
+   "catch_block_or_ask": 1.0,
+   "false_block": 1.0,
+   "false_ask": 0.0
+  },
+  "episodes": {
+   "drain_success_no_fw": 1.0,
+   "drain_success_fw": 0.0,
+   "attacker_gain_no_fw": 737119.0,
+   "attacker_gain_fw": 0.0,
+   "legit_completed_fw": 0.0
+  },
+  "breakdown": {
+   "attack": {
+    "approve_drainer": {
+     "n_pos": 300,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "direct_transfer": {
+     "n_pos": 41,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "nft_approve_drainer": {
+     "n_pos": 78,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "none": {
+     "n_pos": 0,
+     "n_neg": 1306,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "operator_all": {
+     "n_pos": 226,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "permit_phish": {
+     "n_pos": 115,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "recipient_swap": {
+     "n_pos": 165,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "wrong_spender": {
+     "n_pos": 48,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "wrong_spender_permit": {
+     "n_pos": 121,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    }
+   },
+   "intent_type": {
+    "claim": {
+     "n_pos": 163,
+     "n_neg": 167,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "gasless_permit": {
+     "n_pos": 121,
+     "n_neg": 152,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "list_nft": {
+     "n_pos": 150,
+     "n_neg": 169,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "login": {
+     "n_pos": 135,
+     "n_neg": 166,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "revoke": {
+     "n_pos": 131,
+     "n_neg": 160,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "send_eth": {
+     "n_pos": 128,
+     "n_neg": 154,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "send_token": {
+     "n_pos": 136,
+     "n_neg": 169,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "swap": {
+     "n_pos": 130,
+     "n_neg": 169,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    }
+   },
+   "roman_urdu": {
+    "False": {
+     "n_pos": 812,
+     "n_neg": 954,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "True": {
+     "n_pos": 282,
+     "n_neg": 352,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    }
+   },
+   "unlisted_dapp": {
+    "False": {
+     "n_pos": 810,
+     "n_neg": 991,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "True": {
+     "n_pos": 284,
+     "n_neg": 315,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    }
+   }
+  }
+ },
+ {
+  "experiment": "random",
+  "model": "gbm",
+  "view": "wallet",
+  "n_train": 7200,
+  "n_test": 2400,
+  "temperature": 0.12106223202685831,
+  "thresholds": {
+   "general": {
+    "block": 1.928749847963918e-22,
+    "ask": 1.928749847963918e-22
+   },
+   "pay": {
+    "block": 1.928749847963918e-22,
+    "ask": 1.928749847963918e-22
+   },
+   "sign": {
+    "block": 1.928749847963918e-22,
+    "ask": 1.928749847963918e-22
+   }
+  },
+  "auroc": 1.0,
+  "auprc": 1.0,
+  "ece_raw": 3.6937923137594346e-07,
+  "ece_cal": 1.0495613756003654e-22,
+  "brier_cal": 2.0243413436180058e-44,
+  "reliability_raw": [
+   [
+    3.296480363793051e-07,
+    0.0,
+    1306
+   ],
+   [
+    0.9999995831902927,
+    1.0,
+    1094
+   ]
+  ],
+  "reliability_cal": [
+   [
+    1.9287498479639178e-22,
+    0.0,
+    1306
+   ],
+   [
+    1.0,
+    1.0,
+    1094
+   ]
+  ],
+  "overall": {
+   "n_pos": 1094,
+   "n_neg": 1306,
+   "catch_block": 1.0,
+   "catch_block_or_ask": 1.0,
+   "false_block": 1.0,
+   "false_ask": 0.0
+  },
+  "episodes": {
+   "drain_success_no_fw": 1.0,
+   "drain_success_fw": 0.0,
+   "attacker_gain_no_fw": 737119.0,
+   "attacker_gain_fw": 0.0,
+   "legit_completed_fw": 0.0
+  },
+  "breakdown": {
+   "attack": {
+    "approve_drainer": {
+     "n_pos": 300,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "direct_transfer": {
+     "n_pos": 41,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "nft_approve_drainer": {
+     "n_pos": 78,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "none": {
+     "n_pos": 0,
+     "n_neg": 1306,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "operator_all": {
+     "n_pos": 226,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "permit_phish": {
+     "n_pos": 115,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "recipient_swap": {
+     "n_pos": 165,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "wrong_spender": {
+     "n_pos": 48,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "wrong_spender_permit": {
+     "n_pos": 121,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    }
+   },
+   "intent_type": {
+    "claim": {
+     "n_pos": 163,
+     "n_neg": 167,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "gasless_permit": {
+     "n_pos": 121,
+     "n_neg": 152,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "list_nft": {
+     "n_pos": 150,
+     "n_neg": 169,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "login": {
+     "n_pos": 135,
+     "n_neg": 166,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "revoke": {
+     "n_pos": 131,
+     "n_neg": 160,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "send_eth": {
+     "n_pos": 128,
+     "n_neg": 154,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "send_token": {
+     "n_pos": 136,
+     "n_neg": 169,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "swap": {
+     "n_pos": 130,
+     "n_neg": 169,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    }
+   },
+   "roman_urdu": {
+    "False": {
+     "n_pos": 812,
+     "n_neg": 954,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "True": {
+     "n_pos": 282,
+     "n_neg": 352,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    }
+   },
+   "unlisted_dapp": {
+    "False": {
+     "n_pos": 810,
+     "n_neg": 991,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "True": {
+     "n_pos": 284,
+     "n_neg": 315,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    }
+   }
+  }
+ },
+ {
+  "experiment": "heldout_attack",
+  "model": "tfidf_lr",
+  "view": "wallet",
+  "n_train": 6678,
+  "n_test": 1462,
+  "temperature": 0.12106203526458315,
+  "thresholds": {
+   "general": {
+    "block": 3.262205172582007e-22,
+    "ask": 2.137946493753867e-22
+   },
+   "pay": {
+    "block": 3.262205172582007e-22,
+    "ask": 1.928749847963918e-22
+   },
+   "sign": {
+    "block": 3.262205172582007e-22,
+    "ask": 1.928749847963918e-22
+   }
+  },
+  "auroc": 1.0,
+  "auprc": 1.0,
+  "ece_raw": 0.00025574904184467616,
+  "ece_cal": 1.7571363385291768e-22,
+  "brier_cal": 3.564330494180309e-44,
+  "reliability_raw": [
+   [
+    0.0002549569297385109,
+    0.0,
+    1306
+   ],
+   [
+    0.999737619558087,
+    1.0,
+    156
+   ]
+  ],
+  "reliability_cal": [
+   [
+    1.9670239869292928e-22,
+    0.0,
+    1306
+   ],
+   [
+    1.0,
+    1.0,
+    156
+   ]
+  ],
+  "overall": {
+   "n_pos": 156,
+   "n_neg": 1306,
+   "catch_block": 1.0,
+   "catch_block_or_ask": 1.0,
+   "false_block": 0.009188361408882083,
+   "false_ask": 0.5336906584992342
+  },
+  "episodes": {
+   "drain_success_no_fw": 1.0,
+   "drain_success_fw": 0.0,
+   "attacker_gain_no_fw": 137406.0,
+   "attacker_gain_fw": 0.0,
+   "legit_completed_fw": 0.9908116385911179
+  },
+  "breakdown": {
+   "attack": {
+    "direct_transfer": {
+     "n_pos": 41,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "none": {
+     "n_pos": 0,
+     "n_neg": 1306,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.009188361408882083,
+     "false_ask": 0.5336906584992342
+    },
+    "permit_phish": {
+     "n_pos": 115,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    }
+   },
+   "intent_type": {
+    "claim": {
+     "n_pos": 41,
+     "n_neg": 167,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "gasless_permit": {
+     "n_pos": 0,
+     "n_neg": 152,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.07236842105263158,
+     "false_ask": 0.7236842105263158
+    },
+    "list_nft": {
+     "n_pos": 0,
+     "n_neg": 169,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.0,
+     "false_ask": 1.0
+    },
+    "login": {
+     "n_pos": 34,
+     "n_neg": 166,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "revoke": {
+     "n_pos": 0,
+     "n_neg": 160,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "send_eth": {
+     "n_pos": 0,
+     "n_neg": 154,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.0,
+     "false_ask": 1.0
+    },
+    "send_token": {
+     "n_pos": 45,
+     "n_neg": 169,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.727810650887574
+    },
+    "swap": {
+     "n_pos": 36,
+     "n_neg": 169,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.005917159763313609,
+     "false_ask": 0.834319526627219
+    }
+   },
+   "roman_urdu": {
+    "False": {
+     "n_pos": 113,
+     "n_neg": 954,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.009433962264150943,
+     "false_ask": 0.5335429769392034
+    },
+    "True": {
+     "n_pos": 43,
+     "n_neg": 352,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.008522727272727272,
+     "false_ask": 0.5340909090909091
+    }
+   },
+   "unlisted_dapp": {
+    "False": {
+     "n_pos": 116,
+     "n_neg": 991,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.5519677093844602
+    },
+    "True": {
+     "n_pos": 40,
+     "n_neg": 315,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0380952380952381,
+     "false_ask": 0.47619047619047616
+    }
+   }
+  }
+ },
+ {
+  "experiment": "heldout_attack",
+  "model": "mlp",
+  "view": "wallet",
+  "n_train": 6678,
+  "n_test": 1462,
+  "temperature": 0.12106223160421754,
+  "thresholds": {
+   "general": {
+    "block": 8.291072816357862e-18,
+    "ask": 1.767757967714878e-18
+   },
+   "pay": {
+    "block": 8.291072816357862e-18,
+    "ask": 1.5258273099320596e-19
+   },
+   "sign": {
+    "block": 8.291072816357862e-18,
+    "ask": 1.5258273099320596e-19
+   }
+  },
+  "auroc": 1.0,
+  "auprc": 1.0,
+  "ece_raw": 0.0018974884544408761,
+  "ece_cal": 2.5724874795059674e-17,
+  "brier_cal": 6.942128898340172e-31,
+  "reliability_raw": [
+   [
+    0.001974506303668022,
+    0.0,
+    1306
+   ],
+   [
+    0.9987472891807556,
+    1.0,
+    156
+   ]
+  ],
+  "reliability_cal": [
+   [
+    2.879767760365792e-17,
+    0.0,
+    1306
+   ],
+   [
+    1.0,
+    1.0,
+    156
+   ]
+  ],
+  "overall": {
+   "n_pos": 156,
+   "n_neg": 1306,
+   "catch_block": 1.0,
+   "catch_block_or_ask": 1.0,
+   "false_block": 0.013016845329249618,
+   "false_ask": 0.04900459418070444
+  },
+  "episodes": {
+   "drain_success_no_fw": 1.0,
+   "drain_success_fw": 0.0,
+   "attacker_gain_no_fw": 137406.0,
+   "attacker_gain_fw": 0.0,
+   "legit_completed_fw": 0.9869831546707504
+  },
+  "breakdown": {
+   "attack": {
+    "direct_transfer": {
+     "n_pos": 41,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "none": {
+     "n_pos": 0,
+     "n_neg": 1306,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.013016845329249618,
+     "false_ask": 0.04900459418070444
+    },
+    "permit_phish": {
+     "n_pos": 115,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    }
+   },
+   "intent_type": {
+    "claim": {
+     "n_pos": 41,
+     "n_neg": 167,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "gasless_permit": {
+     "n_pos": 0,
+     "n_neg": 152,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.046052631578947366,
+     "false_ask": 0.10526315789473684
+    },
+    "list_nft": {
+     "n_pos": 0,
+     "n_neg": 169,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.0,
+     "false_ask": 0.11834319526627218
+    },
+    "login": {
+     "n_pos": 34,
+     "n_neg": 166,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "revoke": {
+     "n_pos": 0,
+     "n_neg": 160,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "send_eth": {
+     "n_pos": 0,
+     "n_neg": 154,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.0,
+     "false_ask": 0.032467532467532464
+    },
+    "send_token": {
+     "n_pos": 45,
+     "n_neg": 169,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.011834319526627219,
+     "false_ask": 0.03550295857988166
+    },
+    "swap": {
+     "n_pos": 36,
+     "n_neg": 169,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.047337278106508875,
+     "false_ask": 0.10059171597633136
+    }
+   },
+   "roman_urdu": {
+    "False": {
+     "n_pos": 113,
+     "n_neg": 954,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.011530398322851153,
+     "false_ask": 0.04821802935010482
+    },
+    "True": {
+     "n_pos": 43,
+     "n_neg": 352,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.017045454545454544,
+     "false_ask": 0.05113636363636364
+    }
+   },
+   "unlisted_dapp": {
+    "False": {
+     "n_pos": 116,
+     "n_neg": 991,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.006054490413723511,
+     "false_ask": 0.03834510595358224
+    },
+    "True": {
+     "n_pos": 40,
+     "n_neg": 315,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.03492063492063492,
+     "false_ask": 0.08253968253968254
+    }
+   }
+  }
+ },
+ {
+  "experiment": "heldout_attack",
+  "model": "gbm",
+  "view": "wallet",
+  "n_train": 6678,
+  "n_test": 1462,
+  "temperature": 0.12106223202685831,
+  "thresholds": {
+   "general": {
+    "block": 1.928749847963918e-22,
+    "ask": 1.928749847963918e-22
+   },
+   "pay": {
+    "block": 1.928749847963918e-22,
+    "ask": 1.928749847963918e-22
+   },
+   "sign": {
+    "block": 1.928749847963918e-22,
+    "ask": 1.928749847963918e-22
+   }
+  },
+  "auroc": 1.0,
+  "auprc": 1.0,
+  "ece_raw": 3.6263629611278713e-07,
+  "ece_cal": 1.7229461706161946e-22,
+  "brier_cal": 3.3231321646260007e-44,
+  "reliability_raw": [
+   [
+    3.4030734789114957e-07,
+    0.0,
+    1306
+   ],
+   [
+    0.9999994504303297,
+    1.0,
+    156
+   ]
+  ],
+  "reliability_cal": [
+   [
+    1.9287498479639178e-22,
+    0.0,
+    1306
+   ],
+   [
+    1.0,
+    1.0,
+    156
+   ]
+  ],
+  "overall": {
+   "n_pos": 156,
+   "n_neg": 1306,
+   "catch_block": 1.0,
+   "catch_block_or_ask": 1.0,
+   "false_block": 1.0,
+   "false_ask": 0.0
+  },
+  "episodes": {
+   "drain_success_no_fw": 1.0,
+   "drain_success_fw": 0.0,
+   "attacker_gain_no_fw": 137406.0,
+   "attacker_gain_fw": 0.0,
+   "legit_completed_fw": 0.0
+  },
+  "breakdown": {
+   "attack": {
+    "direct_transfer": {
+     "n_pos": 41,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "none": {
+     "n_pos": 0,
+     "n_neg": 1306,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "permit_phish": {
+     "n_pos": 115,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    }
+   },
+   "intent_type": {
+    "claim": {
+     "n_pos": 41,
+     "n_neg": 167,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "gasless_permit": {
+     "n_pos": 0,
+     "n_neg": 152,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "list_nft": {
+     "n_pos": 0,
+     "n_neg": 169,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "login": {
+     "n_pos": 34,
+     "n_neg": 166,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "revoke": {
+     "n_pos": 0,
+     "n_neg": 160,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "send_eth": {
+     "n_pos": 0,
+     "n_neg": 154,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "send_token": {
+     "n_pos": 45,
+     "n_neg": 169,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "swap": {
+     "n_pos": 36,
+     "n_neg": 169,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    }
+   },
+   "roman_urdu": {
+    "False": {
+     "n_pos": 113,
+     "n_neg": 954,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "True": {
+     "n_pos": 43,
+     "n_neg": 352,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    }
+   },
+   "unlisted_dapp": {
+    "False": {
+     "n_pos": 116,
+     "n_neg": 991,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "True": {
+     "n_pos": 40,
+     "n_neg": 315,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    }
+   }
+  }
+ },
+ {
+  "experiment": "heldout_intent",
+  "model": "tfidf_lr",
+  "view": "wallet",
+  "n_train": 5356,
+  "n_test": 621,
+  "temperature": 0.12106203526415907,
+  "thresholds": {
+   "general": {
+    "block": 1.1309846159326411e-20,
+    "ask": 4.98275794946098e-22
+   },
+   "pay": {
+    "block": 1.1309846159326411e-20,
+    "ask": 1.928749847963918e-22
+   },
+   "sign": {
+    "block": 1.1309846159326411e-20,
+    "ask": 1.928749847963918e-22
+   }
+  },
+  "auroc": 1.0,
+  "auprc": 1.0,
+  "ece_raw": 0.00017873376965957472,
+  "ece_cal": 1.0156219006186814e-22,
+  "brier_cal": 1.9588805864071074e-44,
+  "reliability_raw": [
+   [
+    0.00010438881501960319,
+    0.0,
+    327
+   ],
+   [
+    0.9997385764338531,
+    1.0,
+    294
+   ]
+  ],
+  "reliability_cal": [
+   [
+    1.9287498479639178e-22,
+    0.0,
+    327
+   ],
+   [
+    1.0,
+    1.0,
+    294
+   ]
+  ],
+  "overall": {
+   "n_pos": 294,
+   "n_neg": 327,
+   "catch_block": 1.0,
+   "catch_block_or_ask": 1.0,
+   "false_block": 0.0,
+   "false_ask": 0.0
+  },
+  "episodes": {
+   "drain_success_no_fw": 1.0,
+   "drain_success_fw": 0.0,
+   "attacker_gain_no_fw": 225157.0,
+   "attacker_gain_fw": 0.0,
+   "legit_completed_fw": 1.0
+  },
+  "breakdown": {
+   "attack": {
+    "approve_drainer": {
+     "n_pos": 189,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "direct_transfer": {
+     "n_pos": 41,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "none": {
+     "n_pos": 0,
+     "n_neg": 327,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "operator_all": {
+     "n_pos": 64,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    }
+   },
+   "intent_type": {
+    "claim": {
+     "n_pos": 163,
+     "n_neg": 167,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "revoke": {
+     "n_pos": 131,
+     "n_neg": 160,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    }
+   },
+   "roman_urdu": {
+    "False": {
+     "n_pos": 221,
+     "n_neg": 240,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "True": {
+     "n_pos": 73,
+     "n_neg": 87,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    }
+   },
+   "unlisted_dapp": {
+    "False": {
+     "n_pos": 216,
+     "n_neg": 239,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "True": {
+     "n_pos": 78,
+     "n_neg": 88,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    }
+   }
+  }
+ },
+ {
+  "experiment": "heldout_intent",
+  "model": "mlp",
+  "view": "wallet",
+  "n_train": 5356,
+  "n_test": 621,
+  "temperature": 0.01831573019495166,
+  "thresholds": {
+   "general": {
+    "block": 1.9287498933537385e-22,
+    "ask": 1.9287498933537385e-22
+   },
+   "pay": {
+    "block": 1.9287498933537385e-22,
+    "ask": 1.9287498933537385e-22
+   },
+   "sign": {
+    "block": 1.9287498933537385e-22,
+    "ask": 1.9287498933537385e-22
+   }
+  },
+  "auroc": 1.0,
+  "auprc": 1.0,
+  "ece_raw": 0.09728367269135135,
+  "ece_cal": 4.002599204469917e-21,
+  "brier_cal": 9.609865550579938e-41,
+  "reliability_raw": [
+   [
+    0.013213546946644783,
+    0.0,
+    160
+   ],
+   [
+    0.25188374519348145,
+    0.0,
+    43
+   ],
+   [
+    0.3028757572174072,
+    0.0,
+    124
+   ],
+   [
+    0.8486262559890747,
+    1.0,
+    1
+   ],
+   [
+    0.9074965715408325,
+    1.0,
+    30
+   ],
+   [
+    0.9734413623809814,
+    1.0,
+    263
+   ]
+  ],
+  "reliability_cal": [
+   [
+    7.601266379130943e-21,
+    0.0,
+    327
+   ],
+   [
+    1.0,
+    1.0,
+    294
+   ]
+  ],
+  "overall": {
+   "n_pos": 294,
+   "n_neg": 327,
+   "catch_block": 1.0,
+   "catch_block_or_ask": 1.0,
+   "false_block": 1.0,
+   "false_ask": 0.0
+  },
+  "episodes": {
+   "drain_success_no_fw": 1.0,
+   "drain_success_fw": 0.0,
+   "attacker_gain_no_fw": 225157.0,
+   "attacker_gain_fw": 0.0,
+   "legit_completed_fw": 0.0
+  },
+  "breakdown": {
+   "attack": {
+    "approve_drainer": {
+     "n_pos": 189,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "direct_transfer": {
+     "n_pos": 41,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "none": {
+     "n_pos": 0,
+     "n_neg": 327,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "operator_all": {
+     "n_pos": 64,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    }
+   },
+   "intent_type": {
+    "claim": {
+     "n_pos": 163,
+     "n_neg": 167,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "revoke": {
+     "n_pos": 131,
+     "n_neg": 160,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    }
+   },
+   "roman_urdu": {
+    "False": {
+     "n_pos": 221,
+     "n_neg": 240,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "True": {
+     "n_pos": 73,
+     "n_neg": 87,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    }
+   },
+   "unlisted_dapp": {
+    "False": {
+     "n_pos": 216,
+     "n_neg": 239,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "True": {
+     "n_pos": 78,
+     "n_neg": 88,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    }
+   }
+  }
+ },
+ {
+  "experiment": "heldout_intent",
+  "model": "gbm",
+  "view": "wallet",
+  "n_train": 5356,
+  "n_test": 621,
+  "temperature": 0.12106223202685831,
+  "thresholds": {
+   "general": {
+    "block": 1.928749847963918e-22,
+    "ask": 1.928749847963918e-22
+   },
+   "pay": {
+    "block": 1.928749847963918e-22,
+    "ask": 1.928749847963918e-22
+   },
+   "sign": {
+    "block": 1.928749847963918e-22,
+    "ask": 1.928749847963918e-22
+   }
+  },
+  "auroc": 1.0,
+  "auprc": 1.0,
+  "ece_raw": 4.247009731041813e-07,
+  "ece_cal": 1.0156219006186814e-22,
+  "brier_cal": 1.9588805864071074e-44,
+  "reliability_raw": [
+   [
+    3.8019103714329264e-07,
+    0.0,
+    327
+   ],
+   [
+    0.9999995257930777,
+    1.0,
+    294
+   ]
+  ],
+  "reliability_cal": [
+   [
+    1.9287498479639178e-22,
+    0.0,
+    327
+   ],
+   [
+    1.0,
+    1.0,
+    294
+   ]
+  ],
+  "overall": {
+   "n_pos": 294,
+   "n_neg": 327,
+   "catch_block": 1.0,
+   "catch_block_or_ask": 1.0,
+   "false_block": 1.0,
+   "false_ask": 0.0
+  },
+  "episodes": {
+   "drain_success_no_fw": 1.0,
+   "drain_success_fw": 0.0,
+   "attacker_gain_no_fw": 225157.0,
+   "attacker_gain_fw": 0.0,
+   "legit_completed_fw": 0.0
+  },
+  "breakdown": {
+   "attack": {
+    "approve_drainer": {
+     "n_pos": 189,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "direct_transfer": {
+     "n_pos": 41,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "none": {
+     "n_pos": 0,
+     "n_neg": 327,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "operator_all": {
+     "n_pos": 64,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    }
+   },
+   "intent_type": {
+    "claim": {
+     "n_pos": 163,
+     "n_neg": 167,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "revoke": {
+     "n_pos": 131,
+     "n_neg": 160,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    }
+   },
+   "roman_urdu": {
+    "False": {
+     "n_pos": 221,
+     "n_neg": 240,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "True": {
+     "n_pos": 73,
+     "n_neg": 87,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    }
+   },
+   "unlisted_dapp": {
+    "False": {
+     "n_pos": 216,
+     "n_neg": 239,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "True": {
+     "n_pos": 78,
+     "n_neg": 88,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    }
+   }
+  }
+ }
+]

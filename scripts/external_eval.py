@@ -87,21 +87,21 @@ def main():
     y = np.array([r["label"] for r in recs])
     th = fw.th["general"]
     res["bipia_email"] = {"n_clean": int((y == 0).sum()), "n_injected": int(y.sum()), "auroc": float(roc_auc_score(y, p)),
-                          "flag_rate_injected_block": float((p[y == 1] >= th["block"]).mean()),
-                          "flag_rate_injected_block_or_ask": float((p[y == 1] >= th["ask"]).mean()),
-                          "flag_rate_clean_block": float((p[y == 0] >= th["block"]).mean()),
+                          "flag_rate_injected_block": float((p[y == 1] > th["block"]).mean()),
+                          "flag_rate_injected_block_or_ask": float((p[y == 1] > th["ask"]).mean()),
+                          "flag_rate_clean_block": float((p[y == 0] > th["block"]).mean()),
                           "by_category": {}}
     cats = sorted({c for _, c in b if c != "clean"})
     for c in cats:
         idx = [i for i, (_, cc) in enumerate(b) if cc == c]
-        res["bipia_email"]["by_category"][c] = {"n": len(idx), "flag_block_or_ask": float((p[idx] >= th["ask"]).mean())}
+        res["bipia_email"]["by_category"][c] = {"n": len(idx), "flag_block_or_ask": float((p[idx] > th["ask"]).mean())}
     cs = cse()
     pc = fw.probs([r for r, _ in cs])
-    res["cyberseceval_pi"] = {"n": len(cs), "flag_rate_block": float((pc >= th["block"]).mean()),
-                              "flag_rate_block_or_ask": float((pc >= th["ask"]).mean()), "by_variant": {}}
+    res["cyberseceval_pi"] = {"n": len(cs), "flag_rate_block": float((pc > th["block"]).mean()),
+                              "flag_rate_block_or_ask": float((pc > th["ask"]).mean()), "by_variant": {}}
     for v in sorted({c for _, c in cs}):
         idx = [i for i, (_, c) in enumerate(cs) if c == v]
-        res["cyberseceval_pi"]["by_variant"][v] = {"n": len(idx), "flag_block_or_ask": float((pc[idx] >= th["ask"]).mean())}
+        res["cyberseceval_pi"]["by_variant"][v] = {"n": len(idx), "flag_block_or_ask": float((pc[idx] > th["ask"]).mean())}
     os.makedirs("results", exist_ok=True)
     json.dump(res, open("results/external_eval.json", "w"), indent=1)
     print(json.dumps({k: (v if not isinstance(v, dict) else {kk: vv for kk, vv in v.items() if not isinstance(vv, dict)}) for k, v in res.items()}, indent=1))

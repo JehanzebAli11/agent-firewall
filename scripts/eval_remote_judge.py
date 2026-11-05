@@ -36,7 +36,7 @@ def main():
     v = []
     for x, r in zip(p, test):
         t = th[r["action_class"]]
-        v.append("block" if x >= t["block"] else ("ask" if x >= t["ask"] and r["risk"] >= 0.3 else "allow"))
+        v.append("block" if x > t["block"] else ("ask" if x > t["ask"] and r["risk"] >= 0.3 else "allow"))
     v = np.array(v)
     out = {"judge": getattr(j, "name", a.judge), "eval_only": j.eval_only, "data": path, "n_val": len(val), "n_test": len(test),
            "temperature": T, "thresholds": th, "auroc": float(roc_auc_score(yt, p)),

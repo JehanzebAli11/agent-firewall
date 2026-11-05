@@ -4,6 +4,7 @@
 Structured grounding features are computed by code from the record (no labels, no origin field)."""
 from __future__ import annotations
 
+import json
 import re
 
 import numpy as np
@@ -25,6 +26,8 @@ def target_of(a: dict) -> str:
 
 def make_text(r: dict, view: str = "full") -> str:
     if r.get("domain") == "wallet":
+        if view == "wallet_raw":  # ablation: intent + raw request only (no decoding, no simulation, no labels)
+            return f"INTENT: {r['intent']}\nRAW: {json.dumps(r['request'])[:1500]}"
         return r["text"]
     s = f"TASK: {r['task_text']}\nACTION: {r['action_text']}"
     if view == "full":
@@ -66,5 +69,7 @@ def struct_features(r: dict, view: str = "full") -> np.ndarray:
 
 def struct_matrix(recs, view="full") -> np.ndarray:
     if recs and recs[0].get("domain") == "wallet":
+        if view == "wallet_raw":
+            return np.zeros((len(recs), 1), dtype=np.float32)
         return np.asarray([r["features"] + [r["risk"]] for r in recs], dtype=np.float32)
     return np.vstack([struct_features(r, view) for r in recs])

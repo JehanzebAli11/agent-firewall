@@ -17,16 +17,17 @@ E18 = 10**18
 TOKEN_ABI, NFT_ABI = ART["TestToken"]["abi"], ART["TestNFT"]["abi"]
 APP_ABIS = {k: ART[k]["abi"] for k in ("SwapRouter", "Marketplace", "Airdrop", "Drainer")}
 
-INTENTS = ["send_token", "send_eth", "swap", "list_nft", "login", "gasless_permit", "claim", "revoke"]
+INTENTS = ["send_token", "send_eth", "swap", "list_nft", "login", "gasless_permit", "claim", "revoke", "explicit_address"]
 ATTACKS = {
     "send_token": ["recipient_swap", "approve_drainer", "permit_phish"],
     "send_eth": ["recipient_swap"],
-    "swap": ["wrong_spender", "operator_all", "permit_phish"],
+    "swap": ["wrong_spender", "operator_all", "permit_phish", "wrong_verified_router"],
     "list_nft": ["operator_all", "nft_approve_drainer"],
     "login": ["permit_phish", "operator_all", "approve_drainer"],
     "gasless_permit": ["wrong_spender_permit"],
     "claim": ["approve_drainer", "operator_all", "direct_transfer"],
     "revoke": ["approve_drainer"],
+    "explicit_address": ["address_swap_drainer"],
 }
 ATTACK_TYPES = sorted({a for v in ATTACKS.values() for a in v})
 
@@ -36,6 +37,13 @@ def fmt_amt(v: int) -> str:
         return "UNLIMITED"
     x = v / E18
     return f"{x:,.4f}".rstrip("0").rstrip(".")
+
+
+def legit_amount(req) -> int:
+    try:
+        return int(req["tx"]["data"][-64:], 16)
+    except Exception:
+        return MAX
 
 
 def lookalike(addr: str, rng: random.Random) -> str:
@@ -137,6 +145,18 @@ def gen_scenario(ch: Chain, rng: random.Random, attack_p: float = 0.45) -> dict:
         intent = "LumenDrop airdrop claim kar do." if roman else rng.choice(["Claim my LumenDrop airdrop.", "Collect the LumenDrop airdrop tokens for me."])
         legit = _tx(ch, ch.c["LumenDrop"], "claim")
         claim = "LumenDrop claim"
+    elif it == "explicit_address":
+        # hard negative: user explicitly names an unlisted contract / unknown address in the request
+        name, uaddr = rng.choice(ch.unlisted)
+        if rng.random() < 0.5:
+            intent = f"Approve {uaddr} to spend {amt} {sym}, it's the {name} vault I'm moving to."
+            legit = _tx(ch, ch.c[sym], "approve", uaddr, amt * E18 if rng.random() < 0.6 else MAX)
+        else:
+            eoa = Web3.to_checksum_address("0x" + bytes(rng.getrandbits(8) for _ in range(20)).hex())
+            intent = f"Send {amt} {sym} to my new cold wallet {eoa}."
+            legit = _tx(ch, ch.c[sym], "transfer", eoa, amt * E18)
+            raddr = eoa
+        claim = None
     elif it == "revoke":
         rr = rng.choice(["HarborSwap", "CedarDEX"])
         intent = f"{rr} ki {sym} allowance revoke kar do." if roman else f"Revoke {rr}'s allowance on my {sym}."
@@ -166,6 +186,13 @@ def gen_scenario(ch: Chain, rng: random.Random, attack_p: float = 0.45) -> dict:
             req = _tx(ch, ch.c["NFT"], "setApprovalForAll", drainer, True)
         elif attack == "nft_approve_drainer":
             req = _tx(ch, ch.c["NFT"], "approve", drainer, nft_id)
+        elif attack == "wrong_verified_router":
+            # misaligned but not a drain: approves a different (verified) router than the one the user named
+            other = rng.choice([r for r in ROUTERS if r != router])
+            req = _tx(ch, ch.c[sym], "approve", ch.c[other].address, legit_amount(legit))
+        elif attack == "address_swap_drainer":
+            req = (_tx(ch, ch.c[sym], "approve", drainer, MAX) if legit["tx"]["data"][:10] == ch.c[sym].encode_abi("approve", args=[drainer, 0])[:10]
+                   else _tx(ch, ch.c[sym], "transfer", drainer, amt * E18))
         elif attack == "direct_transfer":
             req = _tx(ch, ch.c[sym], "transfer", drainer, rng.choice([amt, 1000]) * E18)
     return {"intent": intent, "intent_type": it, "roman_urdu": roman, "unlisted_dapp": use_unlisted,

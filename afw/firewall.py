@@ -27,9 +27,9 @@ class Firewall:
 
     def decide_p(self, p: float, cls: str, risk: float) -> str:
         th = self.th[cls]
-        if p >= th["block"]:
+        if p > th["block"]:
             return "block"
-        if p >= th["ask"] and risk >= self.min_ask_risk:
+        if p > th["ask"] and risk >= self.min_ask_risk:
             return "ask"
         return "allow"
 

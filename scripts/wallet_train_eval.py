@@ -15,7 +15,8 @@ from afw.datarules import check_trainable  # noqa
 from afw.firewall import Firewall  # noqa
 from afw.judges.cpu import JUDGES, Featurizer  # noqa
 
-EXPS = {"random": None, "heldout_attack": {"permit_phish", "direct_transfer"}, "heldout_intent": {"claim", "revoke"}}
+EXPS = {"random": None, "heldout_attack": {"permit_phish", "direct_transfer", "wrong_verified_router"},
+        "heldout_intent": {"claim", "revoke", "explicit_address"}}
 
 
 def split(r):
@@ -50,9 +51,10 @@ def main():
     for exp in EXPS:
         tr, va, te = (select(recs, exp, p) for p in ("train", "val", "test"))
         ytr, yva, yte = (np.array([r["label"] for r in s]) for s in (tr, va, te))
-        fz = Featurizer("wallet", n_svd=96)
-        for model in ("tfidf_lr", "mlp", "gbm"):
-            j = JUDGES[model](view="wallet", featurizer=fz).fit(tr, ytr)
+        fzs = {}
+        for view, model in [("wallet", "tfidf_lr"), ("wallet", "mlp"), ("wallet", "gbm"), ("wallet_raw", "tfidf_lr")]:
+            fz = fzs.setdefault(view, Featurizer(view, n_svd=96))
+            j = JUDGES[model](view=view, featurizer=fz).fit(tr, ytr)
             lva = j.logit(va)
             T = fit_temperature(lva, yva)
             th = budget_thresholds(sigmoid(lva / T), yva, np.array(["sign"] * len(va)))
@@ -76,12 +78,12 @@ def main():
                 bd[key] = {k: rates(np.asarray(v)[idx], yte[idx]) for k, idx in sorted(g.items())}
             rr, er = reliability(praw, yte)
             rc, ec = reliability(p, yte)
-            m = {"experiment": exp, "model": model, "view": "wallet", "n_train": len(tr), "n_test": len(te), "temperature": T,
+            m = {"experiment": exp, "model": model, "view": view, "n_train": len(tr), "n_test": len(te), "temperature": T,
                  "thresholds": th, "auroc": float(roc_auc_score(yte, p)), "auprc": float(average_precision_score(yte, p)),
                  "ece_raw": er, "ece_cal": ec, "brier_cal": brier(p, yte), "reliability_raw": rr, "reliability_cal": rc,
                  "overall": rates(v, yte), "episodes": ep, "breakdown": bd}
             results.append(m)
-            print(f"{exp:15s} {model:9s} auroc={m['auroc']:.4f} ece {er:.4f}->{ec:.4f} catch={m['overall']['catch_block_or_ask']:.3f} "
+            print(f"{exp:15s} {model:9s} {view:10s} auroc={m['auroc']:.4f} ece {er:.4f}->{ec:.4f} catch={m['overall']['catch_block_or_ask']:.3f} "
                   f"fb={m['overall']['false_block']:.4f} drain {ep['drain_success_no_fw']:.3f}->{ep['drain_success_fw']:.3f}", flush=True)
     json.dump(results, open("results/wallet_metrics.json", "w"), indent=1)
 
