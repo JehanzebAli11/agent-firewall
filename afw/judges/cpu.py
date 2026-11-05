@@ -14,22 +14,53 @@ from sklearn.preprocessing import StandardScaler
 from .features import make_text, struct_matrix
 
 
+class Featurizer:
+    """TF-IDF (word 1-2 + char 2-4) + structured features; optional SVD for dense models.
+    One instance can be shared by several judges trained on the same split (fit once)."""
+
+    def __init__(self, view="full", seed=0, n_svd=256):
+        self.view, self.seed, self.n_svd = view, seed, n_svd
+        self.fitted, self.svd = False, None
+
+    def fit(self, recs):
+        if self.fitted:
+            return self
+        texts = [make_text(r, self.view) for r in recs]
+        self.wv = TfidfVectorizer(ngram_range=(1, 2), min_df=2, max_features=100_000, sublinear_tf=True, dtype=np.float32)
+        self.cv = TfidfVectorizer(analyzer="char_wb", ngram_range=(2, 4), min_df=3, max_features=60_000, sublinear_tf=True, dtype=np.float32)
+        self.wv.fit(texts)
+        self.cv.fit(texts)
+        S = struct_matrix(recs, self.view)
+        self.sc = StandardScaler().fit(S)
+        self.fitted = True
+        self._cache_key, self._cache = id(recs), None
+        return self
+
+    def sparse(self, recs):
+        texts = [make_text(r, self.view) for r in recs]
+        return sp.hstack([self.wv.transform(texts), self.cv.transform(texts)]).tocsr()
+
+    def struct(self, recs):
+        return self.sc.transform(struct_matrix(recs, self.view))
+
+    def dense(self, recs, fit=False):
+        X = self.sparse(recs)
+        if self.svd is None:
+            self.svd = TruncatedSVD(self.n_svd, random_state=self.seed, algorithm="randomized", n_iter=4).fit(X)
+            Z = self.svd.transform(X)
+            self.dsc = StandardScaler().fit(np.hstack([Z, self.struct(recs)]))
+        else:
+            Z = self.svd.transform(X)
+        return self.dsc.transform(np.hstack([Z, self.struct(recs)]))
+
+
 class _Base:
     name = "base"
     eval_only = False
 
-    def __init__(self, view="full", seed=0):
+    def __init__(self, view="full", seed=0, featurizer=None):
         self.view, self.seed = view, seed
-
-    def _text_fit(self, recs):
-        self.wv = TfidfVectorizer(ngram_range=(1, 2), min_df=2, max_features=120_000, sublinear_tf=True)
-        self.cv = TfidfVectorizer(analyzer="char_wb", ngram_range=(2, 4), min_df=3, max_features=120_000, sublinear_tf=True)
-        texts = [make_text(r, self.view) for r in recs]
-        return sp.hstack([self.wv.fit_transform(texts), self.cv.fit_transform(texts)]).tocsr()
-
-    def _text(self, recs):
-        texts = [make_text(r, self.view) for r in recs]
-        return sp.hstack([self.wv.transform(texts), self.cv.transform(texts)]).tocsr()
+        self.fz = featurizer or Featurizer(view, seed)
 
     def logit(self, recs) -> np.ndarray:
         p = np.clip(self.predict_proba(recs), 1e-7, 1 - 1e-7)
@@ -40,15 +71,13 @@ class TfidfLR(_Base):
     name = "tfidf_lr"
 
     def fit(self, recs, y):
-        X = self._text_fit(recs)
-        self.sc = StandardScaler()
-        S = sp.csr_matrix(self.sc.fit_transform(struct_matrix(recs, self.view)))
+        self.fz.fit(recs)
         self.m = LogisticRegression(C=4.0, max_iter=3000, solver="liblinear")
-        self.m.fit(sp.hstack([X, S]).tocsr(), y)
+        self.m.fit(self._X(recs), y)
         return self
 
     def _X(self, recs):
-        return sp.hstack([self._text(recs), sp.csr_matrix(self.sc.transform(struct_matrix(recs, self.view)))]).tocsr()
+        return sp.hstack([self.fz.sparse(recs), sp.csr_matrix(self.fz.struct(recs))]).tocsr()
 
     def predict_proba(self, recs):
         return self.m.predict_proba(self._X(recs))[:, 1]
@@ -57,45 +86,32 @@ class TfidfLR(_Base):
         return self.m.decision_function(self._X(recs))
 
 
-class _Dense(_Base):
-    n_svd = 256
-
-    def _dense_fit(self, recs):
-        X = self._text_fit(recs)
-        self.svd = TruncatedSVD(self.n_svd, random_state=self.seed)
-        Z = self.svd.fit_transform(X)
-        self.sc = StandardScaler()
-        return self.sc.fit_transform(np.hstack([Z, struct_matrix(recs, self.view)]))
-
-    def _dense(self, recs):
-        Z = self.svd.transform(self._text(recs))
-        return self.sc.transform(np.hstack([Z, struct_matrix(recs, self.view)]))
-
-    def predict_proba(self, recs):
-        return self.m.predict_proba(self._dense(recs))[:, 1]
-
-
-class SmallMLP(_Dense):
+class SmallMLP(_Base):
     name = "mlp"
 
     def fit(self, recs, y):
-        D = self._dense_fit(recs)
-        self.m = MLPClassifier((256, 64), alpha=1e-3, batch_size=256, max_iter=60, early_stopping=True,
-                               n_iter_no_change=5, random_state=self.seed)
+        D = self.fz.fit(recs).dense(recs)
+        self.m = MLPClassifier((256, 64), alpha=1e-3, batch_size=256, max_iter=40, early_stopping=True,
+                               n_iter_no_change=4, random_state=self.seed)
         self.m.fit(D, y)
         return self
 
+    def predict_proba(self, recs):
+        return self.m.predict_proba(self.fz.dense(recs))[:, 1]
 
-class GBM(_Dense):
+
+class GBM(_Base):
     name = "gbm"
-    n_svd = 128
 
     def fit(self, recs, y):
-        D = self._dense_fit(recs)
-        self.m = HistGradientBoostingClassifier(max_iter=400, learning_rate=0.08, max_leaf_nodes=63,
+        D = self.fz.fit(recs).dense(recs)
+        self.m = HistGradientBoostingClassifier(max_iter=300, learning_rate=0.1, max_leaf_nodes=31,
                                                 early_stopping=True, random_state=self.seed)
         self.m.fit(D, y)
         return self
+
+    def predict_proba(self, recs):
+        return self.m.predict_proba(self.fz.dense(recs))[:, 1]
 
 
 JUDGES = {"tfidf_lr": TfidfLR, "mlp": SmallMLP, "gbm": GBM}

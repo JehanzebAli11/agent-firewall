@@ -1,1 +1,1 @@
-random         tfidf_lr  full  auroc=0.9999 ece 0.0026->0.0021 catch=0.996/1.000 fb=0.0090 ASR 0.230->0.000 [182s]
+random         tfidf_lr  full  auroc=0.9999 ece 0.0027->0.0020 catch=0.996/1.000 fb=0.0085 ASR 0.230->0.000 [272s]

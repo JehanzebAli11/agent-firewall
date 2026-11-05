@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from afw.calibration import BUDGETS, brier, budget_thresholds, fit_temperature, reliability, sigmoid  # noqa
 from afw.episode import build_episode  # noqa
 from afw.firewall import Firewall, run_episode  # noqa
-from afw.judges.cpu import JUDGES  # noqa
+from afw.judges.cpu import JUDGES, Featurizer  # noqa
 from afw.datarules import check_trainable  # noqa
 
 EXPERIMENTS = {
@@ -107,12 +107,12 @@ def breakdown(test_recs, verdicts, y):
     return out
 
 
-def run(recs, exp, model, view, figdir, save_dir=None, seed=0):
+def run(recs, exp, model, view, figdir, save_dir=None, seed=0, fz=None):
     tr, va, te = (select(recs, exp, p) for p in ("train", "val", "test"))
     check_trainable(tr)
     ytr, yva, yte = (np.array([r["label"] for r in s]) for s in (tr, va, te))
     t0 = time.time()
-    judge = JUDGES[model](view=view, seed=seed).fit(tr, ytr)
+    judge = JUDGES[model](view=view, seed=seed, featurizer=fz).fit(tr, ytr)
     t_fit = time.time() - t0
     lva = judge.logit(va)
     T = fit_temperature(lva, yva)
@@ -158,11 +158,12 @@ def main():
     done = {(r["experiment"], r["model"], r["view"]) for r in results}
     for exp in a.experiments.split(","):
         for view in a.views.split(","):
+            fz = Featurizer(view)
             for model in a.models.split(","):
                 if (exp, model, view) in done:
                     continue
                 t0 = time.time()
-                m = run(recs, exp, model, view, None, a.save_models if exp == "random" else None)
+                m = run(recs, exp, model, view, None, a.save_models if exp == "random" else None, fz=fz)
                 o, e = m["overall"], m["episodes"]
                 print(f"{exp:14s} {model:9s} {view:5s} auroc={m['auroc']:.4f} ece {m['ece_raw']:.4f}->{m['ece_cal']:.4f} "
                       f"catch={o['catch_block']:.3f}/{o['catch_block_or_ask']:.3f} fb={o['false_block']:.4f} "
