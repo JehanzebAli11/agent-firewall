@@ -5,69 +5,77 @@
   "view": "wallet",
   "n_train": 7200,
   "n_test": 2400,
-  "temperature": 0.1210620352646481,
+  "temperature": 0.12106203526138316,
   "thresholds": {
    "general": {
-    "block": 2.182201956843797e-22,
+    "block": 1.928749847963918e-22,
     "ask": 1.928749847963918e-22
    },
    "pay": {
-    "block": 2.182201956843797e-22,
+    "block": 1.928749847963918e-22,
     "ask": 1.928749847963918e-22
    },
    "sign": {
-    "block": 2.182201956843797e-22,
+    "block": 1.928749847963918e-22,
     "ask": 1.928749847963918e-22
    }
   },
   "auroc": 1.0,
   "auprc": 1.0,
-  "ece_raw": 0.00022470341534775048,
-  "ece_cal": 1.1083411792365395e-22,
-  "brier_cal": 3.006476229501123e-44,
+  "ece_raw": 0.00036978590261027425,
+  "ece_cal": 1.0431322094404856e-22,
+  "brier_cal": 3.903218020825992e-34,
   "reliability_raw": [
    [
-    0.0002228547136174487,
+    0.0003634972271779383,
     0.0,
-    1306
+    1298
    ],
    [
-    0.9997730896335921,
+    0.9996228069279604,
     1.0,
-    1094
+    1102
    ]
   ],
   "reliability_cal": [
    [
-    2.0367678638343759e-22,
+    1.9287498479639178e-22,
     0.0,
-    1306
+    1298
    ],
    [
     1.0,
     1.0,
-    1094
+    1102
    ]
   ],
   "overall": {
-   "n_pos": 1094,
-   "n_neg": 1306,
+   "n_pos": 1102,
+   "n_neg": 1298,
    "catch_block": 1.0,
    "catch_block_or_ask": 1.0,
-   "false_block": 0.008422664624808576,
-   "false_ask": 0.5344563552833078
+   "false_block": 0.0,
+   "false_ask": 0.0
   },
   "episodes": {
-   "drain_success_no_fw": 1.0,
+   "drain_success_no_fw": 0.9791288566243194,
    "drain_success_fw": 0.0,
-   "attacker_gain_no_fw": 737119.0,
+   "attacker_gain_no_fw": 724539.0,
    "attacker_gain_fw": 0.0,
-   "legit_completed_fw": 0.9915773353751914
+   "legit_completed_fw": 1.0
   },
   "breakdown": {
    "attack": {
+    "address_swap_drainer": {
+     "n_pos": 128,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
     "approve_drainer": {
-     "n_pos": 300,
+     "n_pos": 263,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -75,7 +83,7 @@
      "false_ask": NaN
     },
     "direct_transfer": {
-     "n_pos": 41,
+     "n_pos": 37,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -83,7 +91,7 @@
      "false_ask": NaN
     },
     "nft_approve_drainer": {
-     "n_pos": 78,
+     "n_pos": 64,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -92,14 +100,14 @@
     },
     "none": {
      "n_pos": 0,
-     "n_neg": 1306,
+     "n_neg": 1298,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
-     "false_block": 0.008422664624808576,
-     "false_ask": 0.5344563552833078
+     "false_block": 0.0,
+     "false_ask": 0.0
     },
     "operator_all": {
-     "n_pos": 226,
+     "n_pos": 184,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -107,7 +115,7 @@
      "false_ask": NaN
     },
     "permit_phish": {
-     "n_pos": 115,
+     "n_pos": 109,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -115,7 +123,7 @@
      "false_ask": NaN
     },
     "recipient_swap": {
-     "n_pos": 165,
+     "n_pos": 152,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -123,7 +131,7 @@
      "false_ask": NaN
     },
     "wrong_spender": {
-     "n_pos": 48,
+     "n_pos": 35,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -131,7 +139,15 @@
      "false_ask": NaN
     },
     "wrong_spender_permit": {
-     "n_pos": 121,
+     "n_pos": 107,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "wrong_verified_router": {
+     "n_pos": 23,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -141,104 +157,112 @@
    },
    "intent_type": {
     "claim": {
-     "n_pos": 163,
-     "n_neg": 167,
+     "n_pos": 148,
+     "n_neg": 150,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "explicit_address": {
+     "n_pos": 128,
+     "n_neg": 152,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
      "false_ask": 0.0
     },
     "gasless_permit": {
-     "n_pos": 121,
-     "n_neg": 152,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": 0.07236842105263158,
-     "false_ask": 0.7236842105263158
-    },
-    "list_nft": {
-     "n_pos": 150,
-     "n_neg": 169,
+     "n_pos": 107,
+     "n_neg": 127,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
-     "false_ask": 1.0
+     "false_ask": 0.0
+    },
+    "list_nft": {
+     "n_pos": 129,
+     "n_neg": 151,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
     },
     "login": {
-     "n_pos": 135,
-     "n_neg": 166,
+     "n_pos": 117,
+     "n_neg": 147,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
      "false_ask": 0.0
     },
     "revoke": {
-     "n_pos": 131,
-     "n_neg": 160,
+     "n_pos": 115,
+     "n_neg": 144,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
      "false_ask": 0.0
     },
     "send_eth": {
-     "n_pos": 128,
-     "n_neg": 154,
+     "n_pos": 117,
+     "n_neg": 127,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
-     "false_ask": 1.0
+     "false_ask": 0.0
     },
     "send_token": {
-     "n_pos": 136,
-     "n_neg": 169,
+     "n_pos": 124,
+     "n_neg": 152,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
-     "false_ask": 0.727810650887574
+     "false_ask": 0.0
     },
     "swap": {
-     "n_pos": 130,
-     "n_neg": 169,
+     "n_pos": 117,
+     "n_neg": 148,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
-     "false_ask": 0.8402366863905325
+     "false_ask": 0.0
     }
    },
    "roman_urdu": {
     "False": {
-     "n_pos": 812,
-     "n_neg": 954,
+     "n_pos": 826,
+     "n_neg": 947,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 0.008385744234800839,
-     "false_ask": 0.5345911949685535
+     "false_block": 0.0,
+     "false_ask": 0.0
     },
     "True": {
-     "n_pos": 282,
-     "n_neg": 352,
+     "n_pos": 276,
+     "n_neg": 351,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 0.008522727272727272,
-     "false_ask": 0.5340909090909091
+     "false_block": 0.0,
+     "false_ask": 0.0
     }
    },
    "unlisted_dapp": {
     "False": {
-     "n_pos": 810,
-     "n_neg": 991,
+     "n_pos": 828,
+     "n_neg": 994,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
-     "false_ask": 0.5519677093844602
+     "false_ask": 0.0
     },
     "True": {
-     "n_pos": 284,
-     "n_neg": 315,
+     "n_pos": 274,
+     "n_neg": 304,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 0.03492063492063492,
-     "false_ask": 0.4793650793650794
+     "false_block": 0.0,
+     "false_ask": 0.0
     }
    }
   }
@@ -249,94 +273,107 @@
   "view": "wallet",
   "n_train": 7200,
   "n_test": 2400,
-  "temperature": 0.037346660186757134,
+  "temperature": 0.288984466900454,
   "thresholds": {
    "general": {
-    "block": 1.9287498933537385e-22,
-    "ask": 1.9287498933537385e-22
+    "block": 1.586354846949689e-05,
+    "ask": 2.0514257812465075e-06
    },
    "pay": {
-    "block": 1.9287498933537385e-22,
-    "ask": 1.9287498933537385e-22
+    "block": 1.586354846949689e-05,
+    "ask": 3.764664313621324e-07
    },
    "sign": {
-    "block": 1.9287498933537385e-22,
-    "ask": 1.9287498933537385e-22
+    "block": 1.586354846949689e-05,
+    "ask": 3.764664313621324e-07
    }
   },
   "auroc": 1.0,
   "auprc": 1.0,
-  "ece_raw": 0.01375429997375856,
-  "ece_cal": 1.0496365400374852e-22,
-  "brier_cal": 2.0246449534652562e-44,
+  "ece_raw": 0.0032663765279964236,
+  "ece_cal": 0.00086889612678533,
+  "brier_cal": 0.0008207276995393209,
   "reliability_raw": [
    [
-    0.014204023405909538,
+    0.002387468470260501,
     0.0,
     1294
    ],
    [
-    0.081708163022995,
-    0.0,
-    11
+    0.11195506900548935,
+    0.2,
+    5
    ],
    [
-    0.13423822820186615,
-    0.0,
+    0.2307710200548172,
+    1.0,
     1
    ],
    [
-    0.782282829284668,
+    0.7122491002082825,
     1.0,
-    2
+    1
    ],
    [
-    0.8371835947036743,
+    0.7743560671806335,
     1.0,
-    2
+    3
    ],
    [
-    0.9172741770744324,
+    0.8464914560317993,
     1.0,
-    15
+    5
    ],
    [
-    0.9892136454582214,
+    0.9118039011955261,
     1.0,
-    1075
+    6
+   ],
+   [
+    0.9988211393356323,
+    1.0,
+    1085
    ]
   ],
   "reliability_cal": [
    [
-    1.9288879755665883e-22,
-    0.0,
-    1306
+    1.554547816340346e-05,
+    0.0015384615384615385,
+    1300
    ],
    [
+    0.9999040365219116,
     1.0,
-    1.0,
-    1094
+    1100
    ]
   ],
   "overall": {
-   "n_pos": 1094,
-   "n_neg": 1306,
+   "n_pos": 1102,
+   "n_neg": 1298,
    "catch_block": 1.0,
    "catch_block_or_ask": 1.0,
-   "false_block": 1.0,
-   "false_ask": 0.0
+   "false_block": 0.007704160246533128,
+   "false_ask": 0.030046224961479198
   },
   "episodes": {
-   "drain_success_no_fw": 1.0,
+   "drain_success_no_fw": 0.9791288566243194,
    "drain_success_fw": 0.0,
-   "attacker_gain_no_fw": 737119.0,
+   "attacker_gain_no_fw": 724539.0,
    "attacker_gain_fw": 0.0,
-   "legit_completed_fw": 0.0
+   "legit_completed_fw": 0.9922958397534669
   },
   "breakdown": {
    "attack": {
+    "address_swap_drainer": {
+     "n_pos": 128,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
     "approve_drainer": {
-     "n_pos": 300,
+     "n_pos": 263,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -344,7 +381,7 @@
      "false_ask": NaN
     },
     "direct_transfer": {
-     "n_pos": 41,
+     "n_pos": 37,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -352,7 +389,7 @@
      "false_ask": NaN
     },
     "nft_approve_drainer": {
-     "n_pos": 78,
+     "n_pos": 64,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -361,14 +398,14 @@
     },
     "none": {
      "n_pos": 0,
-     "n_neg": 1306,
+     "n_neg": 1298,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
-     "false_block": 1.0,
-     "false_ask": 0.0
+     "false_block": 0.007704160246533128,
+     "false_ask": 0.030046224961479198
     },
     "operator_all": {
-     "n_pos": 226,
+     "n_pos": 184,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -376,7 +413,7 @@
      "false_ask": NaN
     },
     "permit_phish": {
-     "n_pos": 115,
+     "n_pos": 109,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -384,7 +421,7 @@
      "false_ask": NaN
     },
     "recipient_swap": {
-     "n_pos": 165,
+     "n_pos": 152,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -392,7 +429,7 @@
      "false_ask": NaN
     },
     "wrong_spender": {
-     "n_pos": 48,
+     "n_pos": 35,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -400,7 +437,15 @@
      "false_ask": NaN
     },
     "wrong_spender_permit": {
-     "n_pos": 121,
+     "n_pos": 107,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "wrong_verified_router": {
+     "n_pos": 23,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -410,104 +455,112 @@
    },
    "intent_type": {
     "claim": {
-     "n_pos": 163,
-     "n_neg": 167,
+     "n_pos": 148,
+     "n_neg": 150,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
-    "gasless_permit": {
-     "n_pos": 121,
+    "explicit_address": {
+     "n_pos": 128,
      "n_neg": 152,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.039473684210526314
+    },
+    "gasless_permit": {
+     "n_pos": 107,
+     "n_neg": 127,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "list_nft": {
-     "n_pos": 150,
-     "n_neg": 169,
+     "n_pos": 129,
+     "n_neg": 151,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "login": {
-     "n_pos": 135,
-     "n_neg": 166,
+     "n_pos": 117,
+     "n_neg": 147,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "revoke": {
-     "n_pos": 131,
-     "n_neg": 160,
+     "n_pos": 115,
+     "n_neg": 144,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "send_eth": {
-     "n_pos": 128,
-     "n_neg": 154,
+     "n_pos": 117,
+     "n_neg": 127,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "send_token": {
-     "n_pos": 136,
-     "n_neg": 169,
+     "n_pos": 124,
+     "n_neg": 152,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "swap": {
-     "n_pos": 130,
-     "n_neg": 169,
+     "n_pos": 117,
+     "n_neg": 148,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
-     "false_ask": 0.0
+     "false_block": 0.06756756756756757,
+     "false_ask": 0.22297297297297297
     }
    },
    "roman_urdu": {
     "False": {
-     "n_pos": 812,
-     "n_neg": 954,
+     "n_pos": 826,
+     "n_neg": 947,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
-     "false_ask": 0.0
+     "false_block": 0.0031678986272439284,
+     "false_ask": 0.027455121436114043
     },
     "True": {
-     "n_pos": 282,
-     "n_neg": 352,
+     "n_pos": 276,
+     "n_neg": 351,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
-     "false_ask": 0.0
+     "false_block": 0.019943019943019943,
+     "false_ask": 0.037037037037037035
     }
    },
    "unlisted_dapp": {
     "False": {
-     "n_pos": 810,
-     "n_neg": 991,
+     "n_pos": 828,
+     "n_neg": 994,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
-     "false_ask": 0.0
+     "false_block": 0.01006036217303823,
+     "false_ask": 0.03722334004024145
     },
     "True": {
-     "n_pos": 284,
-     "n_neg": 315,
+     "n_pos": 274,
+     "n_neg": 304,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
-     "false_ask": 0.0
+     "false_block": 0.0,
+     "false_ask": 0.006578947368421052
     }
    }
   }
@@ -518,69 +571,82 @@
   "view": "wallet",
   "n_train": 7200,
   "n_test": 2400,
-  "temperature": 0.12106223202685831,
+  "temperature": 2.102121381783126,
   "thresholds": {
    "general": {
-    "block": 1.928749847963918e-22,
-    "ask": 1.928749847963918e-22
+    "block": 0.0022810928190327494,
+    "ask": 0.0019137491232025714
    },
    "pay": {
-    "block": 1.928749847963918e-22,
-    "ask": 1.928749847963918e-22
+    "block": 0.0022810928190327494,
+    "ask": 0.0016652257775164668
    },
    "sign": {
-    "block": 1.928749847963918e-22,
-    "ask": 1.928749847963918e-22
+    "block": 0.0022810928190327494,
+    "ask": 0.0016652257775164668
    }
   },
-  "auroc": 1.0,
-  "auprc": 1.0,
-  "ece_raw": 3.6937923137594346e-07,
-  "ece_cal": 1.0495613756003654e-22,
-  "brier_cal": 2.0243413436180058e-44,
+  "auroc": 0.9999867169650922,
+  "auprc": 0.9999846196437909,
+  "ece_raw": 0.0008305914422113671,
+  "ece_cal": 0.0008535475779502099,
+  "brier_cal": 0.0007711598558271656,
   "reliability_raw": [
    [
-    3.296480363793051e-07,
-    0.0,
-    1306
+    4.802572598625599e-07,
+    0.0007704160246533128,
+    1298
    ],
    [
-    0.9999995831902927,
-    1.0,
-    1094
+    0.9999945942243472,
+    0.9990925589836661,
+    1102
    ]
   ],
   "reliability_cal": [
    [
-    1.9287498479639178e-22,
-    0.0,
-    1306
+    0.0008758898440603323,
+    0.0007704160246533128,
+    1298
    ],
    [
+    0.923263333355527,
+    0.0,
+    1
+   ],
+   [
+    0.9991023198581883,
     1.0,
-    1.0,
-    1094
+    1101
    ]
   ],
   "overall": {
-   "n_pos": 1094,
-   "n_neg": 1306,
-   "catch_block": 1.0,
+   "n_pos": 1102,
+   "n_neg": 1298,
+   "catch_block": 0.9990925589836661,
    "catch_block_or_ask": 1.0,
-   "false_block": 1.0,
-   "false_ask": 0.0
+   "false_block": 0.01078582434514638,
+   "false_ask": 0.04391371340523883
   },
   "episodes": {
-   "drain_success_no_fw": 1.0,
+   "drain_success_no_fw": 0.9791288566243194,
    "drain_success_fw": 0.0,
-   "attacker_gain_no_fw": 737119.0,
+   "attacker_gain_no_fw": 724539.0,
    "attacker_gain_fw": 0.0,
-   "legit_completed_fw": 0.0
+   "legit_completed_fw": 0.9892141756548536
   },
   "breakdown": {
    "attack": {
+    "address_swap_drainer": {
+     "n_pos": 128,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
     "approve_drainer": {
-     "n_pos": 300,
+     "n_pos": 263,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -588,7 +654,7 @@
      "false_ask": NaN
     },
     "direct_transfer": {
-     "n_pos": 41,
+     "n_pos": 37,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -596,7 +662,7 @@
      "false_ask": NaN
     },
     "nft_approve_drainer": {
-     "n_pos": 78,
+     "n_pos": 64,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -605,14 +671,14 @@
     },
     "none": {
      "n_pos": 0,
-     "n_neg": 1306,
+     "n_neg": 1298,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
-     "false_block": 1.0,
-     "false_ask": 0.0
+     "false_block": 0.01078582434514638,
+     "false_ask": 0.04391371340523883
     },
     "operator_all": {
-     "n_pos": 226,
+     "n_pos": 184,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -620,7 +686,7 @@
      "false_ask": NaN
     },
     "permit_phish": {
-     "n_pos": 115,
+     "n_pos": 109,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -628,7 +694,7 @@
      "false_ask": NaN
     },
     "recipient_swap": {
-     "n_pos": 165,
+     "n_pos": 152,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -636,7 +702,7 @@
      "false_ask": NaN
     },
     "wrong_spender": {
-     "n_pos": 48,
+     "n_pos": 35,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -644,9 +710,17 @@
      "false_ask": NaN
     },
     "wrong_spender_permit": {
-     "n_pos": 121,
+     "n_pos": 107,
      "n_neg": 0,
      "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "wrong_verified_router": {
+     "n_pos": 23,
+     "n_neg": 0,
+     "catch_block": 0.9565217391304348,
      "catch_block_or_ask": 1.0,
      "false_block": NaN,
      "false_ask": NaN
@@ -654,104 +728,500 @@
    },
    "intent_type": {
     "claim": {
-     "n_pos": 163,
-     "n_neg": 167,
+     "n_pos": 148,
+     "n_neg": 150,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
-    "gasless_permit": {
-     "n_pos": 121,
+    "explicit_address": {
+     "n_pos": 128,
      "n_neg": 152,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "gasless_permit": {
+     "n_pos": 107,
+     "n_neg": 127,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "list_nft": {
-     "n_pos": 150,
-     "n_neg": 169,
+     "n_pos": 129,
+     "n_neg": 151,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "login": {
-     "n_pos": 135,
-     "n_neg": 166,
+     "n_pos": 117,
+     "n_neg": 147,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.04081632653061224,
      "false_ask": 0.0
     },
     "revoke": {
-     "n_pos": 131,
-     "n_neg": 160,
+     "n_pos": 115,
+     "n_neg": 144,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "send_eth": {
-     "n_pos": 128,
-     "n_neg": 154,
+     "n_pos": 117,
+     "n_neg": 127,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "send_token": {
-     "n_pos": 136,
-     "n_neg": 169,
+     "n_pos": 124,
+     "n_neg": 152,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
-     "false_ask": 0.0
+     "false_block": 0.03289473684210526,
+     "false_ask": 0.013157894736842105
     },
     "swap": {
-     "n_pos": 130,
-     "n_neg": 169,
-     "catch_block": 1.0,
+     "n_pos": 117,
+     "n_neg": 148,
+     "catch_block": 0.9914529914529915,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
-     "false_ask": 0.0
+     "false_block": 0.02027027027027027,
+     "false_ask": 0.3716216216216216
     }
    },
    "roman_urdu": {
     "False": {
-     "n_pos": 812,
-     "n_neg": 954,
+     "n_pos": 826,
+     "n_neg": 947,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
-     "false_ask": 0.0
+     "false_block": 0.008447729672650475,
+     "false_ask": 0.048574445617740235
     },
     "True": {
-     "n_pos": 282,
-     "n_neg": 352,
-     "catch_block": 1.0,
+     "n_pos": 276,
+     "n_neg": 351,
+     "catch_block": 0.9963768115942029,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
-     "false_ask": 0.0
+     "false_block": 0.017094017094017096,
+     "false_ask": 0.03133903133903134
     }
    },
    "unlisted_dapp": {
     "False": {
-     "n_pos": 810,
-     "n_neg": 991,
-     "catch_block": 1.0,
+     "n_pos": 828,
+     "n_neg": 994,
+     "catch_block": 0.998792270531401,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
-     "false_ask": 0.0
+     "false_block": 0.012072434607645875,
+     "false_ask": 0.05432595573440644
     },
     "True": {
-     "n_pos": 284,
-     "n_neg": 315,
+     "n_pos": 274,
+     "n_neg": 304,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.006578947368421052,
+     "false_ask": 0.009868421052631578
+    }
+   }
+  }
+ },
+ {
+  "experiment": "random",
+  "model": "tfidf_lr",
+  "view": "wallet_raw",
+  "n_train": 7200,
+  "n_test": 2400,
+  "temperature": 0.6164278260267594,
+  "thresholds": {
+   "general": {
+    "block": 0.21601497496866773,
+    "ask": 0.1568078689384119
+   },
+   "pay": {
+    "block": 0.21601497496866773,
+    "ask": 0.07487827137460674
+   },
+   "sign": {
+    "block": 0.21601497496866773,
+    "ask": 0.07487827137460674
+   }
+  },
+  "auroc": 0.9967107010925645,
+  "auprc": 0.9970400379091432,
+  "ece_raw": 0.031670393343503356,
+  "ece_cal": 0.011442764559596957,
+  "brier_cal": 0.013038903357600372,
+  "reliability_raw": [
+   [
+    0.019565284430826026,
+    0.006030150753768844,
+    995
+   ],
+   [
+    0.09340724600695181,
+    0.03608247422680412,
+    194
+   ],
+   [
+    0.16102984806040002,
+    0.06097560975609756,
+    82
+   ],
+   [
+    0.22833687701135033,
+    0.037037037037037035,
+    27
+   ],
+   [
+    0.2929091051827144,
+    0.2222222222222222,
+    9
+   ],
+   [
+    0.36536652156388255,
+    0.45454545454545453,
+    11
+   ],
+   [
+    0.44258176527333437,
+    0.6875,
+    16
+   ],
+   [
+    0.50950972513076,
+    0.9,
+    10
+   ],
+   [
+    0.5673491871251609,
+    1.0,
+    4
+   ],
+   [
+    0.6271124801008149,
+    1.0,
+    6
+   ],
+   [
+    0.7730217207666561,
+    1.0,
+    3
+   ],
+   [
+    0.8653174383583035,
+    1.0,
+    3
+   ],
+   [
+    0.9136030825779795,
+    1.0,
+    116
+   ],
+   [
+    0.9853514728983837,
+    1.0,
+    924
+   ]
+  ],
+  "reliability_cal": [
+   [
+    0.00837480249944106,
+    0.012903225806451613,
+    1240
+   ],
+   [
+    0.09454566870291094,
+    0.057692307692307696,
+    52
+   ],
+   [
+    0.16482924804054863,
+    0.08333333333333333,
+    12
+   ],
+   [
+    0.23363445809143987,
+    0.2,
+    5
+   ],
+   [
+    0.2974041049456615,
+    0.5555555555555556,
+    9
+   ],
+   [
+    0.37151246405844374,
+    0.6666666666666666,
+    6
+   ],
+   [
+    0.43158243829161724,
+    0.7272727272727273,
+    11
+   ],
+   [
+    0.4876819049108342,
+    0.75,
+    4
+   ],
+   [
+    0.555688928551361,
+    1.0,
+    6
+   ],
+   [
+    0.6269413523357235,
+    1.0,
+    4
+   ],
+   [
+    0.706817833334202,
+    1.0,
+    5
+   ],
+   [
+    0.8657262031935093,
+    1.0,
+    1
+   ],
+   [
+    0.8861628164004485,
+    1.0,
+    2
+   ],
+   [
+    0.9957787361880406,
+    1.0,
+    1043
+   ]
+  ],
+  "overall": {
+   "n_pos": 1102,
+   "n_neg": 1298,
+   "catch_block": 0.9818511796733213,
+   "catch_block_or_ask": 0.984573502722323,
+   "false_block": 0.009244992295839754,
+   "false_ask": 0.03466872110939907
+  },
+  "episodes": {
+   "drain_success_no_fw": 0.9791288566243194,
+   "drain_success_fw": 0.0,
+   "attacker_gain_no_fw": 724539.0,
+   "attacker_gain_fw": 0.0,
+   "legit_completed_fw": 0.9907550077041603
+  },
+  "breakdown": {
+   "attack": {
+    "address_swap_drainer": {
+     "n_pos": 128,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "approve_drainer": {
+     "n_pos": 263,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "direct_transfer": {
+     "n_pos": 37,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "nft_approve_drainer": {
+     "n_pos": 64,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "none": {
+     "n_pos": 0,
+     "n_neg": 1298,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.009244992295839754,
+     "false_ask": 0.03466872110939907
+    },
+    "operator_all": {
+     "n_pos": 184,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "permit_phish": {
+     "n_pos": 109,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "recipient_swap": {
+     "n_pos": 152,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "wrong_spender": {
+     "n_pos": 35,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "wrong_spender_permit": {
+     "n_pos": 107,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "wrong_verified_router": {
+     "n_pos": 23,
+     "n_neg": 0,
+     "catch_block": 0.13043478260869565,
+     "catch_block_or_ask": 0.2608695652173913,
+     "false_block": NaN,
+     "false_ask": NaN
+    }
+   },
+   "intent_type": {
+    "claim": {
+     "n_pos": 148,
+     "n_neg": 150,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
+    },
+    "explicit_address": {
+     "n_pos": 128,
+     "n_neg": 152,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.006578947368421052,
+     "false_ask": 0.046052631578947366
+    },
+    "gasless_permit": {
+     "n_pos": 107,
+     "n_neg": 127,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "list_nft": {
+     "n_pos": 129,
+     "n_neg": 151,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "login": {
+     "n_pos": 117,
+     "n_neg": 147,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "revoke": {
+     "n_pos": 115,
+     "n_neg": 144,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "send_eth": {
+     "n_pos": 117,
+     "n_neg": 127,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "send_token": {
+     "n_pos": 124,
+     "n_neg": 152,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.03289473684210526
+    },
+    "swap": {
+     "n_pos": 117,
+     "n_neg": 148,
+     "catch_block": 0.8290598290598291,
+     "catch_block_or_ask": 0.8547008547008547,
+     "false_block": 0.07432432432432433,
+     "false_ask": 0.22297297297297297
+    }
+   },
+   "roman_urdu": {
+    "False": {
+     "n_pos": 826,
+     "n_neg": 947,
+     "catch_block": 0.9842615012106537,
+     "catch_block_or_ask": 0.986682808716707,
+     "false_block": 0.009503695881731784,
+     "false_ask": 0.03695881731784583
+    },
+    "True": {
+     "n_pos": 276,
+     "n_neg": 351,
+     "catch_block": 0.9746376811594203,
+     "catch_block_or_ask": 0.9782608695652174,
+     "false_block": 0.008547008547008548,
+     "false_ask": 0.02849002849002849
+    }
+   },
+   "unlisted_dapp": {
+    "False": {
+     "n_pos": 828,
+     "n_neg": 994,
+     "catch_block": 0.9842995169082126,
+     "catch_block_or_ask": 0.9879227053140096,
+     "false_block": 0.011066398390342052,
+     "false_ask": 0.043259557344064385
+    },
+    "True": {
+     "n_pos": 274,
+     "n_neg": 304,
+     "catch_block": 0.9744525547445255,
+     "catch_block_or_ask": 0.9744525547445255,
+     "false_block": 0.003289473684210526,
+     "false_ask": 0.006578947368421052
     }
    }
   }
@@ -760,71 +1230,71 @@
   "experiment": "heldout_attack",
   "model": "tfidf_lr",
   "view": "wallet",
-  "n_train": 6678,
-  "n_test": 1462,
-  "temperature": 0.12106203526458315,
+  "n_train": 6691,
+  "n_test": 1467,
+  "temperature": 0.1210620352647439,
   "thresholds": {
    "general": {
-    "block": 3.262205172582007e-22,
-    "ask": 2.137946493753867e-22
+    "block": 1.928749847963918e-22,
+    "ask": 1.928749847963918e-22
    },
    "pay": {
-    "block": 3.262205172582007e-22,
+    "block": 1.928749847963918e-22,
     "ask": 1.928749847963918e-22
    },
    "sign": {
-    "block": 3.262205172582007e-22,
+    "block": 1.928749847963918e-22,
     "ask": 1.928749847963918e-22
    }
   },
   "auroc": 1.0,
   "auprc": 1.0,
-  "ece_raw": 0.00025574904184467616,
-  "ece_cal": 1.7571363385291768e-22,
-  "brier_cal": 3.564330494180309e-44,
+  "ece_raw": 0.015006952906910075,
+  "ece_cal": 0.015678254942029672,
+  "brier_cal": 0.015678254942000727,
   "reliability_raw": [
    [
-    0.0002549569297385109,
-    0.0,
-    1306
+    0.000764374050024198,
+    0.0174110522331567,
+    1321
    ],
    [
-    0.999737619558087,
+    0.9998291915443901,
     1.0,
-    156
+    146
    ]
   ],
   "reliability_cal": [
    [
-    1.9670239869292928e-22,
-    0.0,
-    1306
+    3.2147170785980685e-14,
+    0.0174110522331567,
+    1321
    ],
    [
     1.0,
     1.0,
-    156
+    146
    ]
   ],
   "overall": {
-   "n_pos": 156,
-   "n_neg": 1306,
+   "n_pos": 169,
+   "n_neg": 1298,
    "catch_block": 1.0,
    "catch_block_or_ask": 1.0,
-   "false_block": 0.009188361408882083,
-   "false_ask": 0.5336906584992342
+   "false_block": 0.0,
+   "false_ask": 0.0
   },
   "episodes": {
-   "drain_success_no_fw": 1.0,
+   "drain_success_no_fw": 0.863905325443787,
    "drain_success_fw": 0.0,
-   "attacker_gain_no_fw": 137406.0,
+   "attacker_gain_no_fw": 129111.0,
    "attacker_gain_fw": 0.0,
-   "legit_completed_fw": 0.9908116385911179
+   "legit_completed_fw": 1.0
   },
   "breakdown": {
    "attack": {
     "direct_transfer": {
-     "n_pos": 41,
+     "n_pos": 37,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -833,14 +1303,22 @@
     },
     "none": {
      "n_pos": 0,
-     "n_neg": 1306,
+     "n_neg": 1298,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
-     "false_block": 0.009188361408882083,
-     "false_ask": 0.5336906584992342
+     "false_block": 0.0,
+     "false_ask": 0.0
     },
     "permit_phish": {
-     "n_pos": 115,
+     "n_pos": 109,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "wrong_verified_router": {
+     "n_pos": 23,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -850,32 +1328,40 @@
    },
    "intent_type": {
     "claim": {
-     "n_pos": 41,
-     "n_neg": 167,
+     "n_pos": 37,
+     "n_neg": 150,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
      "false_ask": 0.0
     },
-    "gasless_permit": {
+    "explicit_address": {
      "n_pos": 0,
      "n_neg": 152,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
-     "false_block": 0.07236842105263158,
-     "false_ask": 0.7236842105263158
+     "false_block": 0.0,
+     "false_ask": 0.0
     },
-    "list_nft": {
+    "gasless_permit": {
      "n_pos": 0,
-     "n_neg": 169,
+     "n_neg": 127,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
      "false_block": 0.0,
-     "false_ask": 1.0
+     "false_ask": 0.0
+    },
+    "list_nft": {
+     "n_pos": 0,
+     "n_neg": 151,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.0,
+     "false_ask": 0.0
     },
     "login": {
-     "n_pos": 34,
-     "n_neg": 166,
+     "n_pos": 32,
+     "n_neg": 147,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
@@ -883,7 +1369,7 @@
     },
     "revoke": {
      "n_pos": 0,
-     "n_neg": 160,
+     "n_neg": 144,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
      "false_block": 0.0,
@@ -891,63 +1377,63 @@
     },
     "send_eth": {
      "n_pos": 0,
-     "n_neg": 154,
+     "n_neg": 127,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
      "false_block": 0.0,
-     "false_ask": 1.0
+     "false_ask": 0.0
     },
     "send_token": {
-     "n_pos": 45,
-     "n_neg": 169,
+     "n_pos": 42,
+     "n_neg": 152,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
-     "false_ask": 0.727810650887574
+     "false_ask": 0.0
     },
     "swap": {
-     "n_pos": 36,
-     "n_neg": 169,
+     "n_pos": 58,
+     "n_neg": 148,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 0.005917159763313609,
-     "false_ask": 0.834319526627219
+     "false_block": 0.0,
+     "false_ask": 0.0
     }
    },
    "roman_urdu": {
     "False": {
-     "n_pos": 113,
-     "n_neg": 954,
+     "n_pos": 130,
+     "n_neg": 947,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 0.009433962264150943,
-     "false_ask": 0.5335429769392034
+     "false_block": 0.0,
+     "false_ask": 0.0
     },
     "True": {
-     "n_pos": 43,
-     "n_neg": 352,
+     "n_pos": 39,
+     "n_neg": 351,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 0.008522727272727272,
-     "false_ask": 0.5340909090909091
+     "false_block": 0.0,
+     "false_ask": 0.0
     }
    },
    "unlisted_dapp": {
     "False": {
-     "n_pos": 116,
-     "n_neg": 991,
+     "n_pos": 130,
+     "n_neg": 994,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
-     "false_ask": 0.5519677093844602
+     "false_ask": 0.0
     },
     "True": {
-     "n_pos": 40,
-     "n_neg": 315,
+     "n_pos": 39,
+     "n_neg": 304,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 0.0380952380952381,
-     "false_ask": 0.47619047619047616
+     "false_block": 0.0,
+     "false_ask": 0.0
     }
    }
   }
@@ -956,71 +1442,81 @@
   "experiment": "heldout_attack",
   "model": "mlp",
   "view": "wallet",
-  "n_train": 6678,
-  "n_test": 1462,
-  "temperature": 0.12106223160421754,
+  "n_train": 6691,
+  "n_test": 1467,
+  "temperature": 0.057593660734796,
   "thresholds": {
    "general": {
-    "block": 8.291072816357862e-18,
-    "ask": 1.767757967714878e-18
+    "block": 1.9287498933537385e-22,
+    "ask": 1.9287498933537385e-22
    },
    "pay": {
-    "block": 8.291072816357862e-18,
-    "ask": 1.5258273099320596e-19
+    "block": 1.9287498933537385e-22,
+    "ask": 1.9287498933537385e-22
    },
    "sign": {
-    "block": 8.291072816357862e-18,
-    "ask": 1.5258273099320596e-19
+    "block": 1.9287498933537385e-22,
+    "ask": 1.9287498933537385e-22
    }
   },
-  "auroc": 1.0,
-  "auprc": 1.0,
-  "ece_raw": 0.0018974884544408761,
-  "ece_cal": 2.5724874795059674e-17,
-  "brier_cal": 6.942128898340172e-31,
+  "auroc": 0.937464100436721,
+  "auprc": 0.8898575889670098,
+  "ece_raw": 0.01269803669153831,
+  "ece_cal": 0.015678254942058403,
+  "brier_cal": 0.015678254942058625,
   "reliability_raw": [
    [
-    0.001974506303668022,
-    0.0,
-    1306
+    0.0033696102909743786,
+    0.015957446808510637,
+    1316
    ],
    [
-    0.9987472891807556,
+    0.07690542936325073,
+    0.5,
+    4
+   ],
+   [
+    0.16023676097393036,
+    0.0,
+    1
+   ],
+   [
+    0.9985629320144653,
     1.0,
-    156
+    146
    ]
   ],
   "reliability_cal": [
    [
-    2.879767760365792e-17,
-    0.0,
-    1306
+    2.444745932336968e-16,
+    0.0174110522331567,
+    1321
    ],
    [
     1.0,
     1.0,
-    156
+    146
    ]
   ],
   "overall": {
-   "n_pos": 156,
-   "n_neg": 1306,
-   "catch_block": 1.0,
-   "catch_block_or_ask": 1.0,
-   "false_block": 0.013016845329249618,
-   "false_ask": 0.04900459418070444
+   "n_pos": 169,
+   "n_neg": 1298,
+   "catch_block": 0.8757396449704142,
+   "catch_block_or_ask": 0.8757396449704142,
+   "false_block": 0.0061633281972265025,
+   "false_ask": 0.0
   },
   "episodes": {
-   "drain_success_no_fw": 1.0,
+   "drain_success_no_fw": 0.863905325443787,
    "drain_success_fw": 0.0,
-   "attacker_gain_no_fw": 137406.0,
+   "attacker_gain_no_fw": 129111.0,
    "attacker_gain_fw": 0.0,
-   "legit_completed_fw": 0.9869831546707504
+   "legit_completed_fw": 0.9938366718027735
   },
   "breakdown": {
    "attack": {
     "direct_transfer": {
-     "n_pos": 41,
+     "n_pos": 37,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -1029,49 +1525,65 @@
     },
     "none": {
      "n_pos": 0,
-     "n_neg": 1306,
+     "n_neg": 1298,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
-     "false_block": 0.013016845329249618,
-     "false_ask": 0.04900459418070444
+     "false_block": 0.0061633281972265025,
+     "false_ask": 0.0
     },
     "permit_phish": {
-     "n_pos": 115,
+     "n_pos": 109,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "wrong_verified_router": {
+     "n_pos": 23,
+     "n_neg": 0,
+     "catch_block": 0.08695652173913043,
+     "catch_block_or_ask": 0.08695652173913043,
      "false_block": NaN,
      "false_ask": NaN
     }
    },
    "intent_type": {
     "claim": {
-     "n_pos": 41,
-     "n_neg": 167,
+     "n_pos": 37,
+     "n_neg": 150,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
      "false_ask": 0.0
     },
-    "gasless_permit": {
+    "explicit_address": {
      "n_pos": 0,
      "n_neg": 152,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
-     "false_block": 0.046052631578947366,
-     "false_ask": 0.10526315789473684
+     "false_block": 0.05263157894736842,
+     "false_ask": 0.0
     },
-    "list_nft": {
+    "gasless_permit": {
      "n_pos": 0,
-     "n_neg": 169,
+     "n_neg": 127,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
      "false_block": 0.0,
-     "false_ask": 0.11834319526627218
+     "false_ask": 0.0
+    },
+    "list_nft": {
+     "n_pos": 0,
+     "n_neg": 151,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.0,
+     "false_ask": 0.0
     },
     "login": {
-     "n_pos": 34,
-     "n_neg": 166,
+     "n_pos": 32,
+     "n_neg": 147,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
@@ -1079,7 +1591,7 @@
     },
     "revoke": {
      "n_pos": 0,
-     "n_neg": 160,
+     "n_neg": 144,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
      "false_block": 0.0,
@@ -1087,63 +1599,63 @@
     },
     "send_eth": {
      "n_pos": 0,
-     "n_neg": 154,
+     "n_neg": 127,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
      "false_block": 0.0,
-     "false_ask": 0.032467532467532464
+     "false_ask": 0.0
     },
     "send_token": {
-     "n_pos": 45,
-     "n_neg": 169,
+     "n_pos": 42,
+     "n_neg": 152,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 0.011834319526627219,
-     "false_ask": 0.03550295857988166
+     "false_block": 0.0,
+     "false_ask": 0.0
     },
     "swap": {
-     "n_pos": 36,
-     "n_neg": 169,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": 0.047337278106508875,
-     "false_ask": 0.10059171597633136
+     "n_pos": 58,
+     "n_neg": 148,
+     "catch_block": 0.6379310344827587,
+     "catch_block_or_ask": 0.6379310344827587,
+     "false_block": 0.0,
+     "false_ask": 0.0
     }
    },
    "roman_urdu": {
     "False": {
-     "n_pos": 113,
-     "n_neg": 954,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": 0.011530398322851153,
-     "false_ask": 0.04821802935010482
+     "n_pos": 130,
+     "n_neg": 947,
+     "catch_block": 0.9,
+     "catch_block_or_ask": 0.9,
+     "false_block": 0.0031678986272439284,
+     "false_ask": 0.0
     },
     "True": {
-     "n_pos": 43,
-     "n_neg": 352,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": 0.017045454545454544,
-     "false_ask": 0.05113636363636364
+     "n_pos": 39,
+     "n_neg": 351,
+     "catch_block": 0.7948717948717948,
+     "catch_block_or_ask": 0.7948717948717948,
+     "false_block": 0.014245014245014245,
+     "false_ask": 0.0
     }
    },
    "unlisted_dapp": {
     "False": {
-     "n_pos": 116,
-     "n_neg": 991,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": 0.006054490413723511,
-     "false_ask": 0.03834510595358224
+     "n_pos": 130,
+     "n_neg": 994,
+     "catch_block": 0.8769230769230769,
+     "catch_block_or_ask": 0.8769230769230769,
+     "false_block": 0.007042253521126761,
+     "false_ask": 0.0
     },
     "True": {
-     "n_pos": 40,
-     "n_neg": 315,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": 0.03492063492063492,
-     "false_ask": 0.08253968253968254
+     "n_pos": 39,
+     "n_neg": 304,
+     "catch_block": 0.8717948717948718,
+     "catch_block_or_ask": 0.8717948717948718,
+     "false_block": 0.003289473684210526,
+     "false_ask": 0.0
     }
    }
   }
@@ -1152,8 +1664,8 @@
   "experiment": "heldout_attack",
   "model": "gbm",
   "view": "wallet",
-  "n_train": 6678,
-  "n_test": 1462,
+  "n_train": 6691,
+  "n_test": 1467,
   "temperature": 0.12106223202685831,
   "thresholds": {
    "general": {
@@ -1169,54 +1681,54 @@
     "ask": 1.928749847963918e-22
    }
   },
-  "auroc": 1.0,
-  "auprc": 1.0,
-  "ece_raw": 3.6263629611278713e-07,
-  "ece_cal": 1.7229461706161946e-22,
-  "brier_cal": 3.3231321646260007e-44,
+  "auroc": 0.9319526627218935,
+  "auprc": 0.8795835803858456,
+  "ece_raw": 0.01567795052229959,
+  "ece_cal": 0.01567825494205862,
+  "brier_cal": 0.015678254942058625,
   "reliability_raw": [
    [
-    3.4030734789114957e-07,
-    0.0,
-    1306
+    3.8936795313646673e-07,
+    0.0174110522331567,
+    1321
    ],
    [
-    0.9999994504303297,
+    0.9999995358131535,
     1.0,
-    156
+    146
    ]
   ],
   "reliability_cal": [
    [
-    1.9287498479639178e-22,
-    0.0,
-    1306
+    1.928749847963918e-22,
+    0.0174110522331567,
+    1321
    ],
    [
     1.0,
     1.0,
-    156
+    146
    ]
   ],
   "overall": {
-   "n_pos": 156,
-   "n_neg": 1306,
-   "catch_block": 1.0,
-   "catch_block_or_ask": 1.0,
-   "false_block": 1.0,
+   "n_pos": 169,
+   "n_neg": 1298,
+   "catch_block": 0.863905325443787,
+   "catch_block_or_ask": 0.863905325443787,
+   "false_block": 0.0,
    "false_ask": 0.0
   },
   "episodes": {
-   "drain_success_no_fw": 1.0,
+   "drain_success_no_fw": 0.863905325443787,
    "drain_success_fw": 0.0,
-   "attacker_gain_no_fw": 137406.0,
+   "attacker_gain_no_fw": 129111.0,
    "attacker_gain_fw": 0.0,
-   "legit_completed_fw": 0.0
+   "legit_completed_fw": 1.0
   },
   "breakdown": {
    "attack": {
     "direct_transfer": {
-     "n_pos": 41,
+     "n_pos": 37,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -1225,121 +1737,374 @@
     },
     "none": {
      "n_pos": 0,
-     "n_neg": 1306,
+     "n_neg": 1298,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
-     "false_block": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "permit_phish": {
-     "n_pos": 115,
+     "n_pos": 109,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "wrong_verified_router": {
+     "n_pos": 23,
+     "n_neg": 0,
+     "catch_block": 0.0,
+     "catch_block_or_ask": 0.0,
      "false_block": NaN,
      "false_ask": NaN
     }
    },
    "intent_type": {
     "claim": {
-     "n_pos": 41,
-     "n_neg": 167,
+     "n_pos": 37,
+     "n_neg": 150,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
-    "gasless_permit": {
+    "explicit_address": {
      "n_pos": 0,
      "n_neg": 152,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
-     "false_block": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "gasless_permit": {
+     "n_pos": 0,
+     "n_neg": 127,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "list_nft": {
      "n_pos": 0,
-     "n_neg": 169,
+     "n_neg": 151,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
-     "false_block": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "login": {
-     "n_pos": 34,
-     "n_neg": 166,
+     "n_pos": 32,
+     "n_neg": 147,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "revoke": {
      "n_pos": 0,
-     "n_neg": 160,
+     "n_neg": 144,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
-     "false_block": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "send_eth": {
      "n_pos": 0,
-     "n_neg": 154,
+     "n_neg": 127,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
-     "false_block": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "send_token": {
-     "n_pos": 45,
-     "n_neg": 169,
+     "n_pos": 42,
+     "n_neg": 152,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "swap": {
-     "n_pos": 36,
-     "n_neg": 169,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "n_pos": 58,
+     "n_neg": 148,
+     "catch_block": 0.603448275862069,
+     "catch_block_or_ask": 0.603448275862069,
+     "false_block": 0.0,
      "false_ask": 0.0
     }
    },
    "roman_urdu": {
     "False": {
-     "n_pos": 113,
-     "n_neg": 954,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "n_pos": 130,
+     "n_neg": 947,
+     "catch_block": 0.8846153846153846,
+     "catch_block_or_ask": 0.8846153846153846,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "True": {
-     "n_pos": 43,
-     "n_neg": 352,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "n_pos": 39,
+     "n_neg": 351,
+     "catch_block": 0.7948717948717948,
+     "catch_block_or_ask": 0.7948717948717948,
+     "false_block": 0.0,
      "false_ask": 0.0
     }
    },
    "unlisted_dapp": {
     "False": {
-     "n_pos": 116,
-     "n_neg": 991,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "n_pos": 130,
+     "n_neg": 994,
+     "catch_block": 0.8769230769230769,
+     "catch_block_or_ask": 0.8769230769230769,
+     "false_block": 0.0,
      "false_ask": 0.0
     },
     "True": {
-     "n_pos": 40,
-     "n_neg": 315,
+     "n_pos": 39,
+     "n_neg": 304,
+     "catch_block": 0.8205128205128205,
+     "catch_block_or_ask": 0.8205128205128205,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    }
+   }
+  }
+ },
+ {
+  "experiment": "heldout_attack",
+  "model": "tfidf_lr",
+  "view": "wallet_raw",
+  "n_train": 6691,
+  "n_test": 1467,
+  "temperature": 0.3712039856696053,
+  "thresholds": {
+   "general": {
+    "block": 0.013165852192976208,
+    "ask": 0.008183028913926768
+   },
+   "pay": {
+    "block": 0.013165852192976208,
+    "ask": 0.0035736846956141723
+   },
+   "sign": {
+    "block": 0.013165852192976208,
+    "ask": 0.0035736846956141723
+   }
+  },
+  "auroc": 0.9159334798187471,
+  "auprc": 0.8865709850082726,
+  "ece_raw": 0.022619738091837406,
+  "ece_cal": 0.01511690507245976,
+  "brier_cal": 0.015684993762095374,
+  "reliability_raw": [
+   [
+    0.016704301722637517,
+    0.020353982300884955,
+    1130
+   ],
+   [
+    0.0934919516836041,
+    0.0,
+    151
+   ],
+   [
+    0.15837032642353036,
+    0.0,
+    36
+   ],
+   [
+    0.20781035901158001,
+    0.0,
+    4
+   ],
+   [
+    0.8463223736543781,
+    1.0,
+    4
+   ],
+   [
+    0.9215536773751006,
+    1.0,
+    70
+   ],
+   [
+    0.96801103129635,
+    1.0,
+    72
+   ]
+  ],
+  "reliability_cal": [
+   [
+    0.0007428673001370534,
+    0.0174110522331567,
+    1321
+   ],
+   [
+    0.9989189901042499,
+    1.0,
+    146
+   ]
+  ],
+  "overall": {
+   "n_pos": 169,
+   "n_neg": 1298,
+   "catch_block": 0.863905325443787,
+   "catch_block_or_ask": 0.863905325443787,
+   "false_block": 0.010015408320493066,
+   "false_ask": 0.030046224961479198
+  },
+  "episodes": {
+   "drain_success_no_fw": 0.863905325443787,
+   "drain_success_fw": 0.0,
+   "attacker_gain_no_fw": 129111.0,
+   "attacker_gain_fw": 0.0,
+   "legit_completed_fw": 0.9899845916795069
+  },
+  "breakdown": {
+   "attack": {
+    "direct_transfer": {
+     "n_pos": 37,
+     "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "none": {
+     "n_pos": 0,
+     "n_neg": 1298,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.010015408320493066,
+     "false_ask": 0.030046224961479198
+    },
+    "permit_phish": {
+     "n_pos": 109,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "wrong_verified_router": {
+     "n_pos": 23,
+     "n_neg": 0,
+     "catch_block": 0.0,
+     "catch_block_or_ask": 0.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    }
+   },
+   "intent_type": {
+    "claim": {
+     "n_pos": 37,
+     "n_neg": 150,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
      "false_ask": 0.0
+    },
+    "explicit_address": {
+     "n_pos": 0,
+     "n_neg": 152,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.03289473684210526,
+     "false_ask": 0.10526315789473684
+    },
+    "gasless_permit": {
+     "n_pos": 0,
+     "n_neg": 127,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "list_nft": {
+     "n_pos": 0,
+     "n_neg": 151,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "login": {
+     "n_pos": 32,
+     "n_neg": 147,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "revoke": {
+     "n_pos": 0,
+     "n_neg": 144,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "send_eth": {
+     "n_pos": 0,
+     "n_neg": 127,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "send_token": {
+     "n_pos": 42,
+     "n_neg": 152,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.05263157894736842,
+     "false_ask": 0.1513157894736842
+    },
+    "swap": {
+     "n_pos": 58,
+     "n_neg": 148,
+     "catch_block": 0.603448275862069,
+     "catch_block_or_ask": 0.603448275862069,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    }
+   },
+   "roman_urdu": {
+    "False": {
+     "n_pos": 130,
+     "n_neg": 947,
+     "catch_block": 0.8846153846153846,
+     "catch_block_or_ask": 0.8846153846153846,
+     "false_block": 0.011615628299894404,
+     "false_ask": 0.029567053854276663
+    },
+    "True": {
+     "n_pos": 39,
+     "n_neg": 351,
+     "catch_block": 0.7948717948717948,
+     "catch_block_or_ask": 0.7948717948717948,
+     "false_block": 0.005698005698005698,
+     "false_ask": 0.03133903133903134
+    }
+   },
+   "unlisted_dapp": {
+    "False": {
+     "n_pos": 130,
+     "n_neg": 994,
+     "catch_block": 0.8769230769230769,
+     "catch_block_or_ask": 0.8769230769230769,
+     "false_block": 0.009054325955734407,
+     "false_ask": 0.035211267605633804
+    },
+    "True": {
+     "n_pos": 39,
+     "n_neg": 304,
+     "catch_block": 0.8205128205128205,
+     "catch_block_or_ask": 0.8205128205128205,
+     "false_block": 0.013157894736842105,
+     "false_ask": 0.013157894736842105
     }
    }
   }
@@ -1348,55 +2113,439 @@
   "experiment": "heldout_intent",
   "model": "tfidf_lr",
   "view": "wallet",
-  "n_train": 5356,
-  "n_test": 621,
-  "temperature": 0.12106203526415907,
+  "n_train": 4784,
+  "n_test": 837,
+  "temperature": 0.12106227223818652,
   "thresholds": {
    "general": {
-    "block": 1.1309846159326411e-20,
-    "ask": 4.98275794946098e-22
+    "block": 9.059558903661791e-21,
+    "ask": 1.3326732337871645e-21
    },
    "pay": {
-    "block": 1.1309846159326411e-20,
+    "block": 9.059558903661791e-21,
     "ask": 1.928749847963918e-22
    },
    "sign": {
-    "block": 1.1309846159326411e-20,
+    "block": 9.059558903661791e-21,
     "ask": 1.928749847963918e-22
    }
   },
   "auroc": 1.0,
   "auprc": 1.0,
-  "ece_raw": 0.00017873376965957472,
-  "ece_cal": 1.0156219006186814e-22,
-  "brier_cal": 1.9588805864071074e-44,
+  "ece_raw": 0.001362125509160961,
+  "ece_cal": 1.578653378792763e-18,
+  "brier_cal": 4.7474419160026437e-35,
   "reliability_raw": [
    [
-    0.00010438881501960319,
+    0.002397025047155725,
     0.0,
-    327
+    446
    ],
    [
-    0.9997385764338531,
+    0.9998183481326438,
     1.0,
-    294
+    391
+   ]
+  ],
+  "reliability_cal": [
+   [
+    2.962629771411531e-18,
+    0.0,
+    446
+   ],
+   [
+    1.0,
+    1.0,
+    391
+   ]
+  ],
+  "overall": {
+   "n_pos": 391,
+   "n_neg": 446,
+   "catch_block": 1.0,
+   "catch_block_or_ask": 1.0,
+   "false_block": 0.23318385650224216,
+   "false_ask": 0.08071748878923767
+  },
+  "episodes": {
+   "drain_success_no_fw": 1.0,
+   "drain_success_fw": 0.0,
+   "attacker_gain_no_fw": 273678.0,
+   "attacker_gain_fw": 0.0,
+   "legit_completed_fw": 0.7668161434977578
+  },
+  "breakdown": {
+   "attack": {
+    "address_swap_drainer": {
+     "n_pos": 128,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "approve_drainer": {
+     "n_pos": 167,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "direct_transfer": {
+     "n_pos": 37,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "none": {
+     "n_pos": 0,
+     "n_neg": 446,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.23318385650224216,
+     "false_ask": 0.08071748878923767
+    },
+    "operator_all": {
+     "n_pos": 59,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    }
+   },
+   "intent_type": {
+    "claim": {
+     "n_pos": 148,
+     "n_neg": 150,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "explicit_address": {
+     "n_pos": 128,
+     "n_neg": 152,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.6842105263157895,
+     "false_ask": 0.23684210526315788
+    },
+    "revoke": {
+     "n_pos": 115,
+     "n_neg": 144,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    }
+   },
+   "roman_urdu": {
+    "False": {
+     "n_pos": 296,
+     "n_neg": 331,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.24773413897280966,
+     "false_ask": 0.08157099697885196
+    },
+    "True": {
+     "n_pos": 95,
+     "n_neg": 115,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.19130434782608696,
+     "false_ask": 0.0782608695652174
+    }
+   },
+   "unlisted_dapp": {
+    "False": {
+     "n_pos": 297,
+     "n_neg": 334,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.23952095808383234,
+     "false_ask": 0.08383233532934131
+    },
+    "True": {
+     "n_pos": 94,
+     "n_neg": 112,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.21428571428571427,
+     "false_ask": 0.07142857142857142
+    }
+   }
+  }
+ },
+ {
+  "experiment": "heldout_intent",
+  "model": "mlp",
+  "view": "wallet",
+  "n_train": 4784,
+  "n_test": 837,
+  "temperature": 0.5999420097101392,
+  "thresholds": {
+   "general": {
+    "block": 0.004120125900954008,
+    "ask": 0.0016021262854337692
+   },
+   "pay": {
+    "block": 0.004120125900954008,
+    "ask": 0.0006226348341442645
+   },
+   "sign": {
+    "block": 0.004120125900954008,
+    "ask": 0.0006226348341442645
+   }
+  },
+  "auroc": 0.999994265594715,
+  "auprc": 0.9999934756511301,
+  "ece_raw": 0.1601455152332961,
+  "ece_cal": 0.15235061632659014,
+  "brier_cal": 0.11326701111702323,
+  "reliability_raw": [
+   [
+    0.008701452054083347,
+    0.0,
+    222
+   ],
+   [
+    0.2557068169116974,
+    0.0,
+    38
+   ],
+   [
+    0.441579133272171,
+    0.0,
+    61
+   ],
+   [
+    0.48023521900177,
+    0.0,
+    51
+   ],
+   [
+    0.8533214330673218,
+    0.0,
+    1
+   ],
+   [
+    0.9045133590698242,
+    0.0,
+    12
+   ],
+   [
+    0.996144711971283,
+    0.8650442477876106,
+    452
+   ]
+  ],
+  "reliability_cal": [
+   [
+    0.0006065721972845495,
+    0.0,
+    222
+   ],
+   [
+    0.14419887959957123,
+    0.0,
+    38
+   ],
+   [
+    0.4034048616886139,
+    0.0,
+    61
+   ],
+   [
+    0.46708595752716064,
+    0.0,
+    51
+   ],
+   [
+    0.9988691806793213,
+    0.8408602150537634,
+    465
+   ]
+  ],
+  "overall": {
+   "n_pos": 391,
+   "n_neg": 446,
+   "catch_block": 1.0,
+   "catch_block_or_ask": 1.0,
+   "false_block": 0.5022421524663677,
+   "false_ask": 0.0
+  },
+  "episodes": {
+   "drain_success_no_fw": 1.0,
+   "drain_success_fw": 0.0,
+   "attacker_gain_no_fw": 273678.0,
+   "attacker_gain_fw": 0.0,
+   "legit_completed_fw": 0.4977578475336323
+  },
+  "breakdown": {
+   "attack": {
+    "address_swap_drainer": {
+     "n_pos": 128,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "approve_drainer": {
+     "n_pos": 167,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "direct_transfer": {
+     "n_pos": 37,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
+    "none": {
+     "n_pos": 0,
+     "n_neg": 446,
+     "catch_block": NaN,
+     "catch_block_or_ask": NaN,
+     "false_block": 0.5022421524663677,
+     "false_ask": 0.0
+    },
+    "operator_all": {
+     "n_pos": 59,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    }
+   },
+   "intent_type": {
+    "claim": {
+     "n_pos": 148,
+     "n_neg": 150,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 1.0,
+     "false_ask": 0.0
+    },
+    "explicit_address": {
+     "n_pos": 128,
+     "n_neg": 152,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.4868421052631579,
+     "false_ask": 0.0
+    },
+    "revoke": {
+     "n_pos": 115,
+     "n_neg": 144,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    }
+   },
+   "roman_urdu": {
+    "False": {
+     "n_pos": 296,
+     "n_neg": 331,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.5166163141993958,
+     "false_ask": 0.0
+    },
+    "True": {
+     "n_pos": 95,
+     "n_neg": 115,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.4608695652173913,
+     "false_ask": 0.0
+    }
+   },
+   "unlisted_dapp": {
+    "False": {
+     "n_pos": 297,
+     "n_neg": 334,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.5059880239520959,
+     "false_ask": 0.0
+    },
+    "True": {
+     "n_pos": 94,
+     "n_neg": 112,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.49107142857142855,
+     "false_ask": 0.0
+    }
+   }
+  }
+ },
+ {
+  "experiment": "heldout_intent",
+  "model": "gbm",
+  "view": "wallet",
+  "n_train": 4784,
+  "n_test": 837,
+  "temperature": 0.12106223202685831,
+  "thresholds": {
+   "general": {
+    "block": 1.928749847963918e-22,
+    "ask": 1.928749847963918e-22
+   },
+   "pay": {
+    "block": 1.928749847963918e-22,
+    "ask": 1.928749847963918e-22
+   },
+   "sign": {
+    "block": 1.928749847963918e-22,
+    "ask": 1.928749847963918e-22
+   }
+  },
+  "auroc": 1.0,
+  "auprc": 1.0,
+  "ece_raw": 3.1320314950583613e-06,
+  "ece_cal": 1.0277448413284437e-22,
+  "brier_cal": 1.9822627064579369e-44,
+  "reliability_raw": [
+   [
+    5.503394876816284e-06,
+    0.0,
+    446
+   ],
+   [
+    0.9999995728996258,
+    1.0,
+    391
    ]
   ],
   "reliability_cal": [
    [
     1.9287498479639178e-22,
     0.0,
-    327
+    446
    ],
    [
     1.0,
     1.0,
-    294
+    391
    ]
   ],
   "overall": {
-   "n_pos": 294,
-   "n_neg": 327,
+   "n_pos": 391,
+   "n_neg": 446,
    "catch_block": 1.0,
    "catch_block_or_ask": 1.0,
    "false_block": 0.0,
@@ -1405,14 +2554,22 @@
   "episodes": {
    "drain_success_no_fw": 1.0,
    "drain_success_fw": 0.0,
-   "attacker_gain_no_fw": 225157.0,
+   "attacker_gain_no_fw": 273678.0,
    "attacker_gain_fw": 0.0,
    "legit_completed_fw": 1.0
   },
   "breakdown": {
    "attack": {
+    "address_swap_drainer": {
+     "n_pos": 128,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
     "approve_drainer": {
-     "n_pos": 189,
+     "n_pos": 167,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -1420,7 +2577,7 @@
      "false_ask": NaN
     },
     "direct_transfer": {
-     "n_pos": 41,
+     "n_pos": 37,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -1429,14 +2586,14 @@
     },
     "none": {
      "n_pos": 0,
-     "n_neg": 327,
+     "n_neg": 446,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
      "false_block": 0.0,
      "false_ask": 0.0
     },
     "operator_all": {
-     "n_pos": 64,
+     "n_pos": 59,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -1446,16 +2603,24 @@
    },
    "intent_type": {
     "claim": {
-     "n_pos": 163,
-     "n_neg": 167,
+     "n_pos": 148,
+     "n_neg": 150,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.0,
+     "false_ask": 0.0
+    },
+    "explicit_address": {
+     "n_pos": 128,
+     "n_neg": 152,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
      "false_ask": 0.0
     },
     "revoke": {
-     "n_pos": 131,
-     "n_neg": 160,
+     "n_pos": 115,
+     "n_neg": 144,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
@@ -1464,16 +2629,16 @@
    },
    "roman_urdu": {
     "False": {
-     "n_pos": 221,
-     "n_neg": 240,
+     "n_pos": 296,
+     "n_neg": 331,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
      "false_ask": 0.0
     },
     "True": {
-     "n_pos": 73,
-     "n_neg": 87,
+     "n_pos": 95,
+     "n_neg": 115,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
@@ -1482,16 +2647,16 @@
    },
    "unlisted_dapp": {
     "False": {
-     "n_pos": 216,
-     "n_neg": 239,
+     "n_pos": 297,
+     "n_neg": 334,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
      "false_ask": 0.0
     },
     "True": {
-     "n_pos": 78,
-     "n_neg": 88,
+     "n_pos": 94,
+     "n_neg": 112,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 0.0,
@@ -1502,93 +2667,171 @@
  },
  {
   "experiment": "heldout_intent",
-  "model": "mlp",
-  "view": "wallet",
-  "n_train": 5356,
-  "n_test": 621,
-  "temperature": 0.01831573019495166,
+  "model": "tfidf_lr",
+  "view": "wallet_raw",
+  "n_train": 4784,
+  "n_test": 837,
+  "temperature": 0.632446513212066,
   "thresholds": {
    "general": {
-    "block": 1.9287498933537385e-22,
-    "ask": 1.9287498933537385e-22
+    "block": 0.2694654739557144,
+    "ask": 0.20616521111747552
    },
    "pay": {
-    "block": 1.9287498933537385e-22,
-    "ask": 1.9287498933537385e-22
+    "block": 0.2694654739557144,
+    "ask": 0.10078173320898877
    },
    "sign": {
-    "block": 1.9287498933537385e-22,
-    "ask": 1.9287498933537385e-22
+    "block": 0.2694654739557144,
+    "ask": 0.10078173320898877
    }
   },
-  "auroc": 1.0,
-  "auprc": 1.0,
-  "ece_raw": 0.09728367269135135,
-  "ece_cal": 4.002599204469917e-21,
-  "brier_cal": 9.609865550579938e-41,
+  "auroc": 0.9931301824687762,
+  "auprc": 0.9921873144985296,
+  "ece_raw": 0.2860002715837364,
+  "ece_cal": 0.2921552719018725,
+  "brier_cal": 0.2517264048896251,
   "reliability_raw": [
    [
-    0.013213546946644783,
+    0.029015779322694474,
     0.0,
-    160
+    70
    ],
    [
-    0.25188374519348145,
+    0.09085229951337549,
     0.0,
-    43
+    7
    ],
    [
-    0.3028757572174072,
+    0.18161492697716225,
     0.0,
-    124
-   ],
-   [
-    0.8486262559890747,
-    1.0,
     1
    ],
    [
-    0.9074965715408325,
-    1.0,
-    30
+    0.25184623541753903,
+    0.0,
+    59
    ],
    [
-    0.9734413623809814,
-    1.0,
-    263
+    0.31222267668905096,
+    0.0,
+    51
+   ],
+   [
+    0.37791369216483867,
+    0.0,
+    19
+   ],
+   [
+    0.40356382549641767,
+    0.0,
+    15
+   ],
+   [
+    0.7036401978381839,
+    0.0,
+    1
+   ],
+   [
+    0.7834121256990174,
+    0.0,
+    40
+   ],
+   [
+    0.861611086330142,
+    0.0,
+    61
+   ],
+   [
+    0.9075746363793569,
+    0.11320754716981132,
+    106
+   ],
+   [
+    0.9894745131619754,
+    0.9312039312039312,
+    407
    ]
   ],
   "reliability_cal": [
    [
-    7.601266379130943e-21,
+    0.006253454826838088,
     0.0,
-    327
+    77
    ],
    [
-    1.0,
-    1.0,
-    294
+    0.08468340094798028,
+    0.0,
+    1
+   ],
+   [
+    0.15173950322504726,
+    0.0,
+    59
+   ],
+   [
+    0.2229685637409284,
+    0.0,
+    51
+   ],
+   [
+    0.31258293034694445,
+    0.0,
+    19
+   ],
+   [
+    0.3503135945452414,
+    0.0,
+    15
+   ],
+   [
+    0.7969304669039735,
+    0.0,
+    1
+   ],
+   [
+    0.8659473514910379,
+    0.0,
+    1
+   ],
+   [
+    0.8874924023086472,
+    0.0,
+    42
+   ],
+   [
+    0.988638174094674,
+    0.6847635726795096,
+    571
    ]
   ],
   "overall": {
-   "n_pos": 294,
-   "n_neg": 327,
+   "n_pos": 391,
+   "n_neg": 446,
    "catch_block": 1.0,
    "catch_block_or_ask": 1.0,
-   "false_block": 1.0,
+   "false_block": 0.57847533632287,
    "false_ask": 0.0
   },
   "episodes": {
    "drain_success_no_fw": 1.0,
    "drain_success_fw": 0.0,
-   "attacker_gain_no_fw": 225157.0,
+   "attacker_gain_no_fw": 273678.0,
    "attacker_gain_fw": 0.0,
-   "legit_completed_fw": 0.0
+   "legit_completed_fw": 0.42152466367713004
   },
   "breakdown": {
    "attack": {
+    "address_swap_drainer": {
+     "n_pos": 128,
+     "n_neg": 0,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": NaN,
+     "false_ask": NaN
+    },
     "approve_drainer": {
-     "n_pos": 189,
+     "n_pos": 167,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -1596,7 +2839,7 @@
      "false_ask": NaN
     },
     "direct_transfer": {
-     "n_pos": 41,
+     "n_pos": 37,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -1605,14 +2848,14 @@
     },
     "none": {
      "n_pos": 0,
-     "n_neg": 327,
+     "n_neg": 446,
      "catch_block": NaN,
      "catch_block_or_ask": NaN,
-     "false_block": 1.0,
+     "false_block": 0.57847533632287,
      "false_ask": 0.0
     },
     "operator_all": {
-     "n_pos": 64,
+     "n_pos": 59,
      "n_neg": 0,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
@@ -1622,211 +2865,63 @@
    },
    "intent_type": {
     "claim": {
-     "n_pos": 163,
-     "n_neg": 167,
+     "n_pos": 148,
+     "n_neg": 150,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
      "false_block": 1.0,
      "false_ask": 0.0
     },
-    "revoke": {
-     "n_pos": 131,
-     "n_neg": 160,
+    "explicit_address": {
+     "n_pos": 128,
+     "n_neg": 152,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.4868421052631579,
+     "false_ask": 0.0
+    },
+    "revoke": {
+     "n_pos": 115,
+     "n_neg": 144,
+     "catch_block": 1.0,
+     "catch_block_or_ask": 1.0,
+     "false_block": 0.2361111111111111,
      "false_ask": 0.0
     }
    },
    "roman_urdu": {
     "False": {
-     "n_pos": 221,
-     "n_neg": 240,
+     "n_pos": 296,
+     "n_neg": 331,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.6193353474320241,
      "false_ask": 0.0
     },
     "True": {
-     "n_pos": 73,
-     "n_neg": 87,
+     "n_pos": 95,
+     "n_neg": 115,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.4608695652173913,
      "false_ask": 0.0
     }
    },
    "unlisted_dapp": {
     "False": {
-     "n_pos": 216,
-     "n_neg": 239,
+     "n_pos": 297,
+     "n_neg": 334,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.5778443113772455,
      "false_ask": 0.0
     },
     "True": {
-     "n_pos": 78,
-     "n_neg": 88,
+     "n_pos": 94,
+     "n_neg": 112,
      "catch_block": 1.0,
      "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
-     "false_ask": 0.0
-    }
-   }
-  }
- },
- {
-  "experiment": "heldout_intent",
-  "model": "gbm",
-  "view": "wallet",
-  "n_train": 5356,
-  "n_test": 621,
-  "temperature": 0.12106223202685831,
-  "thresholds": {
-   "general": {
-    "block": 1.928749847963918e-22,
-    "ask": 1.928749847963918e-22
-   },
-   "pay": {
-    "block": 1.928749847963918e-22,
-    "ask": 1.928749847963918e-22
-   },
-   "sign": {
-    "block": 1.928749847963918e-22,
-    "ask": 1.928749847963918e-22
-   }
-  },
-  "auroc": 1.0,
-  "auprc": 1.0,
-  "ece_raw": 4.247009731041813e-07,
-  "ece_cal": 1.0156219006186814e-22,
-  "brier_cal": 1.9588805864071074e-44,
-  "reliability_raw": [
-   [
-    3.8019103714329264e-07,
-    0.0,
-    327
-   ],
-   [
-    0.9999995257930777,
-    1.0,
-    294
-   ]
-  ],
-  "reliability_cal": [
-   [
-    1.9287498479639178e-22,
-    0.0,
-    327
-   ],
-   [
-    1.0,
-    1.0,
-    294
-   ]
-  ],
-  "overall": {
-   "n_pos": 294,
-   "n_neg": 327,
-   "catch_block": 1.0,
-   "catch_block_or_ask": 1.0,
-   "false_block": 1.0,
-   "false_ask": 0.0
-  },
-  "episodes": {
-   "drain_success_no_fw": 1.0,
-   "drain_success_fw": 0.0,
-   "attacker_gain_no_fw": 225157.0,
-   "attacker_gain_fw": 0.0,
-   "legit_completed_fw": 0.0
-  },
-  "breakdown": {
-   "attack": {
-    "approve_drainer": {
-     "n_pos": 189,
-     "n_neg": 0,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": NaN,
-     "false_ask": NaN
-    },
-    "direct_transfer": {
-     "n_pos": 41,
-     "n_neg": 0,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": NaN,
-     "false_ask": NaN
-    },
-    "none": {
-     "n_pos": 0,
-     "n_neg": 327,
-     "catch_block": NaN,
-     "catch_block_or_ask": NaN,
-     "false_block": 1.0,
-     "false_ask": 0.0
-    },
-    "operator_all": {
-     "n_pos": 64,
-     "n_neg": 0,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": NaN,
-     "false_ask": NaN
-    }
-   },
-   "intent_type": {
-    "claim": {
-     "n_pos": 163,
-     "n_neg": 167,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
-     "false_ask": 0.0
-    },
-    "revoke": {
-     "n_pos": 131,
-     "n_neg": 160,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
-     "false_ask": 0.0
-    }
-   },
-   "roman_urdu": {
-    "False": {
-     "n_pos": 221,
-     "n_neg": 240,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
-     "false_ask": 0.0
-    },
-    "True": {
-     "n_pos": 73,
-     "n_neg": 87,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
-     "false_ask": 0.0
-    }
-   },
-   "unlisted_dapp": {
-    "False": {
-     "n_pos": 216,
-     "n_neg": 239,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
-     "false_ask": 0.0
-    },
-    "True": {
-     "n_pos": 78,
-     "n_neg": 88,
-     "catch_block": 1.0,
-     "catch_block_or_ask": 1.0,
-     "false_block": 1.0,
+     "false_block": 0.5803571428571429,
      "false_ask": 0.0
     }
    }

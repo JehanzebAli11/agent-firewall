@@ -1,0 +1,4 @@
+random         tfidf_lr  full  auroc=0.9999 ece 0.0025->0.0020 catch=0.996/0.999 fb=0.0093 ASR 0.224->0.000 [237s]
+random         mlp       full  auroc=0.9996 ece 0.0018->0.0013 catch=0.992/0.996 fb=0.0107 ASR 0.224->0.001 [230s]
+random         gbm       full  auroc=0.9998 ece 0.0016->0.0012 catch=0.995/0.997 fb=0.0110 ASR 0.224->0.001 [200s]
+random         tfidf_lr  blind auroc=0.9986 ece 0.0019->0.0014 catch=0.987/0.988 fb=0.0104 ASR 0.224->0.003 [96s]
